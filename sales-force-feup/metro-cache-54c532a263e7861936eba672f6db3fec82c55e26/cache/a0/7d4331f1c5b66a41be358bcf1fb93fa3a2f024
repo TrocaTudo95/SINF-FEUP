@@ -1,0 +1,19 @@
+__d(function (global, _require, module, exports, _dependencyMap) {
+    Object.defineProperty(exports, "__esModule", {
+        value: true
+    });
+    exports.fetchPicture = exports.fetchProducts = undefined;
+
+    var _constants = _require(_dependencyMap[0], "./constants");
+
+    var _utils = _require(_dependencyMap[1], "../utils/utils");
+
+    var fetchProducts = exports.fetchProducts = function fetchProducts(primaveraToken) {
+        var RAW_QUERY = "\"SELECT Artigo.Artigo, Artigo.Descricao, ArtigoMoeda.PVP1, Artigo.StkActual\n                        FROM Artigo JOIN ArtigoMoeda ON ArtigoMoeda.Artigo = Artigo.Artigo\"";
+        return (0, _utils.fetchRequest)(_utils.fetchRequestMethod.POST, _constants.RAW_QUERY_ROUTE, RAW_QUERY, primaveraToken);
+    };
+
+    var fetchPicture = exports.fetchPicture = function fetchPicture(pictureId) {
+        return (0, _utils.fetchRequest)(_utils.fetchRequestMethod.GET, _constants.HOST_FLASK + "products/" + pictureId);
+    };
+});

@@ -1,0 +1,9 @@
+__d(function (global, _require, module, exports, _dependencyMap) {
+  var isNil = _require(_dependencyMap[0], './isNil');
+
+  var isArray = _require(_dependencyMap[1], './isArray');
+
+  module.exports = function isObject(x) {
+    return !isNil(x) && typeof x === 'object' && !isArray(x);
+  };
+});

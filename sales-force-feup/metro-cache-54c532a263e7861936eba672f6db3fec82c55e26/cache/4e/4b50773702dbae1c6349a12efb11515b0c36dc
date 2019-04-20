@@ -1,0 +1,458 @@
+__d(function (global, _require, module, exports, _dependencyMap) {
+    Object.defineProperty(exports, "__esModule", {
+        value: true
+    });
+    exports.DateUtils = exports.fetchRequest = exports.fetchRequestMethod = exports.deleteLocally = exports.getLocally = exports.saveLocally = exports.Hr = exports.Styles = exports.ColorTheme = undefined;
+
+    var _react2 = _require(_dependencyMap[0], "react");
+
+    var _react3 = _interopRequireDefault(_react2);
+
+    var _index = _require(_dependencyMap[1], "./../node_modules/react-transform-hmr/lib/index.js");
+
+    var _index2 = _interopRequireDefault(_index);
+
+    var _jsxFileName = "/home/trocatudo/sales-force-feup/sales-force-feup/utils/utils.js",
+        _this2 = this,
+        _class,
+        _temp;
+
+    var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+    var _reactNative = _require(_dependencyMap[2], "react-native");
+
+    var _expo = _require(_dependencyMap[3], "expo");
+
+    function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+    function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+    function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+    function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+    var _components = {
+        Hr: {
+            displayName: "Hr"
+        }
+    };
+
+    var _node_modulesReactTransformHmrLibIndexJs2 = (0, _index2.default)({
+        filename: "/home/trocatudo/sales-force-feup/sales-force-feup/utils/utils.js",
+        components: _components,
+        locals: [module],
+        imports: [_react3.default]
+    });
+
+    function _wrapComponent(id) {
+        return function (Component) {
+            return _node_modulesReactTransformHmrLibIndexJs2(Component, id);
+        };
+    }
+
+    var ColorTheme = exports.ColorTheme = {
+        black: '#222629',
+        strongGreen: '#61892F',
+        lightGreen: '#86C232',
+        strongGrey: '#474B4F',
+        lightGrey: '#6B6E70',
+        lightLightGrey: '#F0F0F0',
+        white: 'white'
+    };
+    var Styles = exports.Styles = {
+        loginSignup: _reactNative.StyleSheet.create({
+            mainView: {
+                flex: 1,
+                backgroundColor: ColorTheme.black,
+                alignItems: 'center',
+                justifyContent: 'center'
+            },
+            upperView: {
+                flex: 0.8,
+                alignItems: 'center',
+                justifyContent: 'center'
+            },
+            bottomView: {
+                flex: 1.5,
+                alignItems: 'center',
+                justifyContent: 'flex-start'
+            },
+            logo: {
+                fontSize: 48,
+                color: ColorTheme.white
+            },
+            textField: {
+                fontSize: 18,
+                borderBottomWidth: 2,
+                borderBottomColor: ColorTheme.lightGrey,
+                padding: 10,
+                width: _reactNative.Dimensions.get('window').width - 50,
+                marginBottom: 10,
+                color: ColorTheme.white
+            },
+            loginButton: {
+                marginTop: 10,
+                color: ColorTheme.strongGreen
+            },
+            buttonView: {
+                marginTop: 10,
+                marginBottom: 10
+            },
+            button: {
+                color: ColorTheme.strongGreen,
+                fontSize: 22
+            },
+            warningsView: {
+                flexDirection: 'row',
+                justifyContent: 'flex-start',
+                width: _reactNative.Dimensions.get('window').width - 50
+            },
+            warnings: {
+                color: 'red'
+            }
+        }),
+        tasks: _reactNative.StyleSheet.create({
+            mainView: {
+                flex: 1,
+                backgroundColor: ColorTheme.white
+            },
+            item: {
+                paddingTop: 12,
+                paddingRight: 12,
+                paddingBottom: 12,
+                flexDirection: 'row',
+                justifyContent: 'flex-start',
+                alignItems: 'center'
+            }
+        }),
+        products: _reactNative.StyleSheet.create({
+            mainView: {
+                flex: 1,
+                backgroundColor: ColorTheme.white
+            },
+            item: {
+                paddingLeft: 10,
+                paddingBottom: 15,
+                paddingTop: 15,
+                paddingRight: 15,
+                flexDirection: 'column'
+            }
+        }),
+        standard: _reactNative.StyleSheet.create({
+            mainView: {
+                flex: 1,
+                backgroundColor: ColorTheme.white,
+                paddingTop: 20,
+                paddingLeft: 20
+            },
+            textField: {
+                fontSize: 18,
+                borderBottomWidth: 2,
+                borderBottomColor: ColorTheme.black,
+                padding: 10,
+                width: _reactNative.Dimensions.get('window').width - 50,
+                marginBottom: 10,
+                color: ColorTheme.white
+            },
+            picker: {
+                padding: 2,
+                width: _reactNative.Dimensions.get('window').width
+            },
+            button: {
+                color: ColorTheme.lightGreen,
+                fontSize: 22,
+                paddingRight: 10
+            }
+        }),
+        header: _reactNative.StyleSheet.create({
+            view: {
+                backgroundColor: ColorTheme.strongGrey
+            },
+            title: {
+                color: ColorTheme.white,
+                fontSize: 20,
+                marginLeft: 15
+            },
+            back: {
+                color: ColorTheme.strongGreen
+            }
+        }),
+        tabBar: _reactNative.StyleSheet.create({
+            textSelected: {
+                color: ColorTheme.strongGreen
+            },
+            textNotSelected: {
+                color: ColorTheme.strongGrey
+            },
+            view: {
+                flex: 10,
+                alignItems: 'center'
+            }
+        }),
+        sideMenu: _reactNative.StyleSheet.create({
+            container: {
+                paddingTop: 40,
+                flex: 1
+            },
+            navItemStyle: {
+                padding: 10
+            },
+            navSectionStyle: {
+                backgroundColor: ColorTheme.lightLightGrey
+            },
+            sectionHeadingStyle: {
+                paddingVertical: 10,
+                paddingHorizontal: 5
+            },
+            footerContainer: {
+                padding: 20,
+                backgroundColor: 'lightgrey'
+            },
+            footerText: {
+                color: ColorTheme.strongGreen
+            }
+        })
+    };
+
+    var Hr = exports.Hr = _wrapComponent("Hr")(function (_React$Component) {
+        _inherits(Hr, _React$Component);
+
+        function Hr(props) {
+            _classCallCheck(this, Hr);
+
+            var _this = _possibleConstructorReturn(this, (Hr.__proto__ || Object.getPrototypeOf(Hr)).call(this, props));
+
+            _this.color = _this.props.color == undefined ? 'black' : _this.props.color;
+            _this.offset = _this.props.offset == undefined ? 0 : _this.props.offset;
+            _this.lineHeight = _this.props.lineHeight == undefined ? 1 : _this.props.lineHeight;
+            _this.style = _reactNative.StyleSheet.create({
+                view: {
+                    height: _this.lineHeight,
+                    backgroundColor: _this.color,
+                    width: _reactNative.Dimensions.get('window').width,
+                    marginLeft: _this.offset
+                }
+            });
+            return _this;
+        }
+
+        _createClass(Hr, [{
+            key: "render",
+            value: function render() {
+                return _react3.default.createElement(_reactNative.View, {
+                    style: this.style.view,
+                    __source: {
+                        fileName: _jsxFileName,
+                        lineNumber: 234
+                    }
+                });
+            }
+        }]);
+
+        return Hr;
+    }(_react3.default.Component));
+
+    var saveLocally = exports.saveLocally = function saveLocally(values) {
+        var i;
+        return regeneratorRuntime.async(function saveLocally$(_context) {
+            while (1) {
+                switch (_context.prev = _context.next) {
+                    case 0:
+                        _context.prev = 0;
+                        i = 0;
+
+                    case 2:
+                        if (!(i < values.length)) {
+                            _context.next = 8;
+                            break;
+                        }
+
+                        _context.next = 5;
+                        return regeneratorRuntime.awrap(_expo.SecureStore.setItemAsync(values[i].key, values[i].value));
+
+                    case 5:
+                        i++;
+                        _context.next = 2;
+                        break;
+
+                    case 8:
+                        return _context.abrupt("return", true);
+
+                    case 11:
+                        _context.prev = 11;
+                        _context.t0 = _context["catch"](0);
+                        return _context.abrupt("return", false);
+
+                    case 14:
+                    case "end":
+                        return _context.stop();
+                }
+            }
+        }, null, _this2, [[0, 11]]);
+    };
+
+    var getLocally = exports.getLocally = function getLocally(keys) {
+        var result, i, load;
+        return regeneratorRuntime.async(function getLocally$(_context2) {
+            while (1) {
+                switch (_context2.prev = _context2.next) {
+                    case 0:
+                        _context2.prev = 0;
+                        result = {};
+                        i = 0;
+
+                    case 3:
+                        if (!(i < keys.length)) {
+                            _context2.next = 11;
+                            break;
+                        }
+
+                        _context2.next = 6;
+                        return regeneratorRuntime.awrap(_expo.SecureStore.getItemAsync(keys[i]));
+
+                    case 6:
+                        load = _context2.sent;
+                        result[keys[i]] = load;
+
+                    case 8:
+                        i++;
+                        _context2.next = 3;
+                        break;
+
+                    case 11:
+                        return _context2.abrupt("return", result);
+
+                    case 14:
+                        _context2.prev = 14;
+                        _context2.t0 = _context2["catch"](0);
+                        return _context2.abrupt("return", false);
+
+                    case 17:
+                    case "end":
+                        return _context2.stop();
+                }
+            }
+        }, null, _this2, [[0, 14]]);
+    };
+
+    var deleteLocally = exports.deleteLocally = function deleteLocally(keys) {
+        var i;
+        return regeneratorRuntime.async(function deleteLocally$(_context3) {
+            while (1) {
+                switch (_context3.prev = _context3.next) {
+                    case 0:
+                        _context3.prev = 0;
+                        i = 0;
+
+                    case 2:
+                        if (!(i < keys.length)) {
+                            _context3.next = 8;
+                            break;
+                        }
+
+                        _context3.next = 5;
+                        return regeneratorRuntime.awrap(_expo.SecureStore.deleteItemAsync(keys[i]));
+
+                    case 5:
+                        i++;
+                        _context3.next = 2;
+                        break;
+
+                    case 8:
+                        return _context3.abrupt("return", true);
+
+                    case 11:
+                        _context3.prev = 11;
+                        _context3.t0 = _context3["catch"](0);
+                        return _context3.abrupt("return", false);
+
+                    case 14:
+                    case "end":
+                        return _context3.stop();
+                }
+            }
+        }, null, _this2, [[0, 11]]);
+    };
+
+    var fetchRequestMethod = exports.fetchRequestMethod = {
+        POST: 'POST',
+        GET: 'GET',
+        PUT: 'PUT',
+        DELETE: 'DELETE'
+    };
+
+    var fetchRequest = exports.fetchRequest = function fetchRequest(method, url, body, authToken) {
+        var options = {
+            method: method,
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: typeof body === 'object' && body !== null ? JSON.stringify(body) : body
+        };
+        if (authToken !== null) options.headers.Authorization = "Bearer " + authToken;
+        return new Promise(function (resolve, reject) {
+            var fetchPromise = fetch(url, options);
+            fetchPromise.then(function (response) {
+                if (response.ok) {
+                    var bodyPromise = response.json();
+                    bodyPromise.then(function (responseBody) {
+                        resolve({
+                            status: response.status,
+                            body: responseBody
+                        });
+                    }).catch(function (err) {
+                        resolve({
+                            status: response.status,
+                            body: {}
+                        });
+                    });
+                } else {
+                    var _bodyPromise = response.text();
+
+                    _bodyPromise.then(function (responseText) {
+                        reject({
+                            status: response.status,
+                            body: {},
+                            error: responseText
+                        });
+                    }).catch(function (err) {
+                        console.log(err);
+                    });
+                }
+            }).catch(function (err) {
+                reject({
+                    status: 'unknown',
+                    body: {},
+                    error: err.toString()
+                });
+            });
+        });
+    };
+
+    var DateUtils = exports.DateUtils = (_temp = _class = function DateUtils() {
+        _classCallCheck(this, DateUtils);
+    }, _class.convertDateToEpochSecs = function (date) {
+        return Math.floor(date.getTime() / 1000);
+    }, _class.convertEpochSecsToDateStringWithLocale = function (seconds, locale) {
+        return new Date(seconds * 1000).toLocaleDateString(locale);
+    }, _class.convertEpochSecsToDateTimeStringLocale = function (seconds, locale) {
+        return new Date(seconds * 1000).toLocaleString(locale);
+    }, _class.convertEpochSecsToDateString = function (seconds) {
+        var date = new Date(seconds * 1000);
+        var month = date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth();
+        var day = date.getDate() < 10 ? '0' + date.getDate() : date.getDate();
+        return date.getFullYear() + '-' + month + '-' + day;
+    }, _class.convertEpochSecsToTimeString = function (seconds) {
+        var date = new Date(seconds * 1000);
+        var hour = date.getHours();
+        var minutes = date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes();
+        return hour + ':' + minutes;
+    }, _class.getCurrentDayEpochSecs = function () {
+        var time = new Date();
+        var todayString = time.getMonth() + 1 + "/" + time.getDate() + "/" + time.getFullYear();
+        var seconds = DateUtils.convertDateToEpochSecs(todayString);
+        return seconds;
+    }, _class.getCurrentEpochSecs = function () {
+        return parseInt(new Date().getTime() / 1000);
+    }, _temp);
+});

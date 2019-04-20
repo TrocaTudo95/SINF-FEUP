@@ -1,0 +1,25 @@
+__d(function (global, _require, module, exports, _dependencyMap) {
+  var isFunction = _require(_dependencyMap[0], './isFunction');
+
+  var isNil = _require(_dependencyMap[1], './isNil');
+
+  var fail = _require(_dependencyMap[2], './fail');
+
+  var stringify = _require(_dependencyMap[3], './stringify');
+
+  function assert(guard, message) {
+    if (guard !== true) {
+      if (isFunction(message)) {
+        message = message();
+      } else if (isNil(message)) {
+        message = 'Assert failed (turn on "Pause on exceptions" in your Source panel)';
+      }
+
+      assert.fail(message);
+    }
+  }
+
+  assert.fail = fail;
+  assert.stringify = stringify;
+  module.exports = assert;
+});

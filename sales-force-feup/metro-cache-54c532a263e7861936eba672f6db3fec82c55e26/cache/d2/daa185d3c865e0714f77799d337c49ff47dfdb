@@ -1,0 +1,22 @@
+__d(function (global, _require, module, exports, _dependencyMap) {
+    Object.defineProperty(exports, "__esModule", {
+        value: true
+    });
+    exports.getCustomerDetails = exports.fetchNewCustomer = exports.fetchCustomers = undefined;
+
+    var _utils = _require(_dependencyMap[0], "../utils/utils");
+
+    var _constants = _require(_dependencyMap[1], "./constants");
+
+    var fetchCustomers = exports.fetchCustomers = function fetchCustomers(primaveraToken) {
+        return (0, _utils.fetchRequest)(_utils.fetchRequestMethod.GET, _constants.CUSTOMERS_URL, null, primaveraToken);
+    };
+
+    var fetchNewCustomer = exports.fetchNewCustomer = function fetchNewCustomer(body, primaveraToken) {
+        return (0, _utils.fetchRequest)(_utils.fetchRequestMethod.POST, _constants.CREATE_CUSTOMER_URL, body, primaveraToken);
+    };
+
+    var getCustomerDetails = exports.getCustomerDetails = function getCustomerDetails(customer, primaveraToken) {
+        return (0, _utils.fetchRequest)(_utils.fetchRequestMethod.GET, _constants.CUSTOMERS_DETAILS_URL + customer, null, primaveraToken);
+    };
+});

@@ -1,0 +1,351 @@
+__d(function (global, _require, module, exports, _dependencyMap) {
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+
+  var _react2 = _require(_dependencyMap[0], "react");
+
+  var _react3 = _interopRequireDefault(_react2);
+
+  var _index = _require(_dependencyMap[1], "./node_modules/react-transform-hmr/lib/index.js");
+
+  var _index2 = _interopRequireDefault(_index);
+
+  var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+  var _jsxFileName = "/home/trocatudo/sales-force-feup/sales-force-feup/App.js";
+
+  var _reactNative = _require(_dependencyMap[2], "react-native");
+
+  var _store = _require(_dependencyMap[3], "./redux/store");
+
+  var _store2 = _interopRequireDefault(_store);
+
+  var _reactRedux = _require(_dependencyMap[4], "react-redux");
+
+  var _views = _require(_dependencyMap[5], "./views");
+
+  var _reactNavigation = _require(_dependencyMap[6], "react-navigation");
+
+  var _utils = _require(_dependencyMap[7], "./utils/utils");
+
+  var _Ionicons = _require(_dependencyMap[8], "@expo/vector-icons/Ionicons");
+
+  var _Ionicons2 = _interopRequireDefault(_Ionicons);
+
+  var _NewCustomer = _require(_dependencyMap[9], "./views/NewCustomer");
+
+  var _NewCustomer2 = _interopRequireDefault(_NewCustomer);
+
+  var _CustomerPage = _require(_dependencyMap[10], "./views/CustomerPage");
+
+  var _CustomerPage2 = _interopRequireDefault(_CustomerPage);
+
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+  function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+  function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+  function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+  var _components = {
+    App: {
+      displayName: "App"
+    }
+  };
+
+  var _node_modulesReactTransformHmrLibIndexJs2 = (0, _index2.default)({
+    filename: "/home/trocatudo/sales-force-feup/sales-force-feup/App.js",
+    components: _components,
+    locals: [module],
+    imports: [_react3.default]
+  });
+
+  function _wrapComponent(id) {
+    return function (Component) {
+      return _node_modulesReactTransformHmrLibIndexJs2(Component, id);
+    };
+  }
+
+  var CalendarNavigator = (0, _reactNavigation.createStackNavigator)({
+    TasksList: _views.Tasks,
+    NewTaskView: _views.NewTask
+  }, {
+    initialRouteName: 'TasksList',
+    navigationOptions: {
+      headerStyle: _utils.Styles.header.view,
+      headerTintColor: _utils.ColorTheme.lightGreen
+    }
+  });
+  CalendarNavigator.navigationOptions = {
+    tabBarLabel: function tabBarLabel(_ref) {
+      var focused = _ref.focused;
+      return focused ? _react3.default.createElement(
+        _reactNative.View,
+        {
+          style: _utils.Styles.tabBar.view,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 44
+          }
+        },
+        _react3.default.createElement(_Ionicons2.default, {
+          name: "ios-calendar",
+          size: 24,
+          color: _utils.ColorTheme.lightGreen,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 45
+          }
+        }),
+        _react3.default.createElement(
+          _reactNative.Text,
+          {
+            style: _utils.Styles.tabBar.textSelected,
+            __source: {
+              fileName: _jsxFileName,
+              lineNumber: 46
+            }
+          },
+          "Calendar"
+        )
+      ) : _react3.default.createElement(
+        _reactNative.View,
+        {
+          style: _utils.Styles.tabBar.view,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 50
+          }
+        },
+        _react3.default.createElement(_Ionicons2.default, {
+          name: "ios-calendar-outline",
+          size: 24,
+          color: _utils.ColorTheme.strongGrey,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 51
+          }
+        }),
+        _react3.default.createElement(
+          _reactNative.Text,
+          {
+            style: _utils.Styles.tabBar.textNotSelected,
+            __source: {
+              fileName: _jsxFileName,
+              lineNumber: 52
+            }
+          },
+          "Calendar"
+        )
+      );
+    }
+  };
+  var ProductCatalogueNavigator = (0, _reactNavigation.createStackNavigator)({
+    ProductList: _views.ProductsList
+  }, {
+    initialRouteName: 'ProductList',
+    navigationOptions: {
+      headerStyle: _utils.Styles.header.view,
+      headerTintColor: _utils.ColorTheme.lightGreen
+    }
+  });
+  ProductCatalogueNavigator.navigationOptions = {
+    tabBarLabel: function tabBarLabel(_ref2) {
+      var focused = _ref2.focused;
+      return focused ? _react3.default.createElement(
+        _reactNative.View,
+        {
+          style: _utils.Styles.tabBar.view,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 84
+          }
+        },
+        _react3.default.createElement(_Ionicons2.default, {
+          name: "ios-book",
+          size: 24,
+          color: _utils.ColorTheme.lightGreen,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 85
+          }
+        }),
+        _react3.default.createElement(
+          _reactNative.Text,
+          {
+            style: _utils.Styles.tabBar.textSelected,
+            __source: {
+              fileName: _jsxFileName,
+              lineNumber: 86
+            }
+          },
+          "Catalogue"
+        )
+      ) : _react3.default.createElement(
+        _reactNative.View,
+        {
+          style: _utils.Styles.tabBar.view,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 90
+          }
+        },
+        _react3.default.createElement(_Ionicons2.default, {
+          name: "ios-book-outline",
+          size: 24,
+          color: _utils.ColorTheme.strongGrey,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 91
+          }
+        }),
+        _react3.default.createElement(
+          _reactNative.Text,
+          {
+            style: _utils.Styles.tabBar.textNotSelected,
+            __source: {
+              fileName: _jsxFileName,
+              lineNumber: 92
+            }
+          },
+          "Catalogue"
+        )
+      );
+    }
+  };
+  var CustomersNavigator = (0, _reactNavigation.createStackNavigator)({
+    Customers: _views.Customers,
+    NewCustomerView: _NewCustomer2.default,
+    CustomerPage: _CustomerPage2.default
+  }, {
+    initialRouteName: 'Customers',
+    navigationOptions: {
+      headerStyle: _utils.Styles.header.view,
+      headerTintColor: _utils.ColorTheme.lightGreen
+    }
+  });
+  CustomersNavigator.navigationOptions = {
+    tabBarLabel: function tabBarLabel(_ref3) {
+      var focused = _ref3.focused;
+      return focused ? _react3.default.createElement(
+        _reactNative.View,
+        {
+          style: _utils.Styles.tabBar.view,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 127
+          }
+        },
+        _react3.default.createElement(_Ionicons2.default, {
+          name: "ios-contacts",
+          size: 24,
+          color: _utils.ColorTheme.lightGreen,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 128
+          }
+        }),
+        _react3.default.createElement(
+          _reactNative.Text,
+          {
+            style: _utils.Styles.tabBar.textSelected,
+            __source: {
+              fileName: _jsxFileName,
+              lineNumber: 129
+            }
+          },
+          "Customers"
+        )
+      ) : _react3.default.createElement(
+        _reactNative.View,
+        {
+          style: _utils.Styles.tabBar.view,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 133
+          }
+        },
+        _react3.default.createElement(_Ionicons2.default, {
+          name: "ios-contacts-outline",
+          size: 24,
+          color: _utils.ColorTheme.strongGrey,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 134
+          }
+        }),
+        _react3.default.createElement(
+          _reactNative.Text,
+          {
+            style: _utils.Styles.tabBar.textNotSelected,
+            __source: {
+              fileName: _jsxFileName,
+              lineNumber: 135
+            }
+          },
+          "Customers"
+        )
+      );
+    }
+  };
+  var MainNavigator = (0, _reactNavigation.createBottomTabNavigator)({
+    Opportunities: _views.Opportunities,
+    Catalogue: ProductCatalogueNavigator,
+    Tasks: CalendarNavigator,
+    Customers: CustomersNavigator
+  }, {
+    initialRouteName: 'Tasks',
+    tabBarOptions: {}
+  });
+  var DrawerNavigator = (0, _reactNavigation.createDrawerNavigator)({
+    Main: MainNavigator
+  }, {
+    contentComponent: _views.Menu,
+    initialRouteName: 'Main'
+  });
+  var SwitchNavigatorLogin = (0, _reactNavigation.createSwitchNavigator)({
+    Login: _views.Login,
+    Signup: _views.Signup,
+    DrawerNavigator: DrawerNavigator
+  }, {
+    initialRouteName: 'Login'
+  });
+
+  var App = _wrapComponent("App")(function (_React$Component) {
+    _inherits(App, _React$Component);
+
+    function App() {
+      _classCallCheck(this, App);
+
+      return _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).apply(this, arguments));
+    }
+
+    _createClass(App, [{
+      key: "render",
+      value: function render() {
+        return _react3.default.createElement(
+          _reactRedux.Provider,
+          {
+            store: _store2.default,
+            __source: {
+              fileName: _jsxFileName,
+              lineNumber: 196
+            }
+          },
+          _react3.default.createElement(SwitchNavigatorLogin, {
+            __source: {
+              fileName: _jsxFileName,
+              lineNumber: 197
+            }
+          })
+        );
+      }
+    }]);
+
+    return App;
+  }(_react3.default.Component));
+
+  exports.default = App;
+});

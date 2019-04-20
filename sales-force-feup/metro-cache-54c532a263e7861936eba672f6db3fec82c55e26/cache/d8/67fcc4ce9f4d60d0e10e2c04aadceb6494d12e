@@ -1,0 +1,168 @@
+__d(function (global, _require, module, exports, _dependencyMap) {
+    Object.defineProperty(exports, "__esModule", {
+        value: true
+    });
+
+    var _react2 = _require(_dependencyMap[0], "react");
+
+    var _react3 = _interopRequireDefault(_react2);
+
+    var _index = _require(_dependencyMap[1], "./../node_modules/react-transform-hmr/lib/index.js");
+
+    var _index2 = _interopRequireDefault(_index);
+
+    var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+    var _class,
+        _temp,
+        _jsxFileName = "/home/trocatudo/sales-force-feup/sales-force-feup/views/Opportunities.js";
+
+    var _reactNative = _require(_dependencyMap[2], "react-native");
+
+    var _reactRedux = _require(_dependencyMap[3], "react-redux");
+
+    var _utils = _require(_dependencyMap[4], "../utils/utils");
+
+    var _Ionicons = _require(_dependencyMap[5], "@expo/vector-icons/Ionicons");
+
+    var _Ionicons2 = _interopRequireDefault(_Ionicons);
+
+    function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+    function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+    function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+    function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+    var _components = {
+        Opportunities: {
+            displayName: "Opportunities"
+        }
+    };
+
+    var _node_modulesReactTransformHmrLibIndexJs2 = (0, _index2.default)({
+        filename: "/home/trocatudo/sales-force-feup/sales-force-feup/views/Opportunities.js",
+        components: _components,
+        locals: [module],
+        imports: [_react3.default]
+    });
+
+    function _wrapComponent(id) {
+        return function (Component) {
+            return _node_modulesReactTransformHmrLibIndexJs2(Component, id);
+        };
+    }
+
+    var Opportunities = _wrapComponent("Opportunities")((_temp = _class = function (_React$Component) {
+        _inherits(Opportunities, _React$Component);
+
+        function Opportunities() {
+            _classCallCheck(this, Opportunities);
+
+            return _possibleConstructorReturn(this, (Opportunities.__proto__ || Object.getPrototypeOf(Opportunities)).apply(this, arguments));
+        }
+
+        _createClass(Opportunities, [{
+            key: "render",
+            value: function render() {
+                return _react3.default.createElement(
+                    _reactNative.View,
+                    {
+                        style: _utils.Styles.loginSignup.games,
+                        __source: {
+                            fileName: _jsxFileName,
+                            lineNumber: 45
+                        }
+                    },
+                    _react3.default.createElement(
+                        _reactNative.Text,
+                        {
+                            __source: {
+                                fileName: _jsxFileName,
+                                lineNumber: 45
+                            }
+                        },
+                        "Opportunities"
+                    )
+                );
+            }
+        }]);
+
+        return Opportunities;
+    }(_react3.default.Component), _class.navigationOptions = function (_ref) {
+        var navigation = _ref.navigation;
+        return {
+            tabBarLabel: function tabBarLabel(_ref2) {
+                var focused = _ref2.focused;
+                return focused ? _react3.default.createElement(
+                    _reactNative.View,
+                    {
+                        style: _utils.Styles.tabBar.view,
+                        __source: {
+                            fileName: _jsxFileName,
+                            lineNumber: 22
+                        }
+                    },
+                    _react3.default.createElement(_Ionicons2.default, {
+                        name: "ios-bulb",
+                        size: 24,
+                        color: _utils.ColorTheme.lightGreen,
+                        __source: {
+                            fileName: _jsxFileName,
+                            lineNumber: 23
+                        }
+                    }),
+                    _react3.default.createElement(
+                        _reactNative.Text,
+                        {
+                            style: _utils.Styles.tabBar.textSelected,
+                            __source: {
+                                fileName: _jsxFileName,
+                                lineNumber: 24
+                            }
+                        },
+                        "Opportunities"
+                    )
+                ) : _react3.default.createElement(
+                    _reactNative.View,
+                    {
+                        style: _utils.Styles.tabBar.view,
+                        __source: {
+                            fileName: _jsxFileName,
+                            lineNumber: 29
+                        }
+                    },
+                    _react3.default.createElement(_Ionicons2.default, {
+                        name: "ios-bulb-outline",
+                        size: 24,
+                        color: _utils.ColorTheme.strongGrey,
+                        __source: {
+                            fileName: _jsxFileName,
+                            lineNumber: 30
+                        }
+                    }),
+                    _react3.default.createElement(
+                        _reactNative.Text,
+                        {
+                            style: _utils.Styles.tabBar.textNotSelected,
+                            __source: {
+                                fileName: _jsxFileName,
+                                lineNumber: 31
+                            }
+                        },
+                        "Opportunities"
+                    )
+                );
+            }
+        };
+    }, _temp));
+
+    var mapStateToProps = function mapStateToProps(state) {
+        return {
+            tasks: state.tasks
+        };
+    };
+
+    exports.default = (0, _reactRedux.connect)(mapStateToProps, {})(Opportunities);
+});

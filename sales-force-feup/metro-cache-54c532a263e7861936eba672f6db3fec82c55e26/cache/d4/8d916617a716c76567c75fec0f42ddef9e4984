@@ -1,0 +1,7 @@
+__d(function (global, _require, module, exports, _dependencyMap) {
+  var isType = _require(_dependencyMap[0], './isType');
+
+  module.exports = function isMaybe(x) {
+    return isType(x) && x.meta.kind === 'maybe';
+  };
+});

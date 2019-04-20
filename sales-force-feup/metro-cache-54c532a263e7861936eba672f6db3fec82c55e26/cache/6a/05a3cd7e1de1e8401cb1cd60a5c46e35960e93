@@ -1,0 +1,5 @@
+__d(function (global, _require, module, exports, _dependencyMap) {
+  module.exports = function isString(x) {
+    return typeof x === 'string';
+  };
+});

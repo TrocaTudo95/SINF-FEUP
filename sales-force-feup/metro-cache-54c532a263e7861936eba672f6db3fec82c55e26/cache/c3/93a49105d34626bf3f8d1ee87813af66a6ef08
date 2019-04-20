@@ -1,0 +1,29 @@
+__d(function (global, _require, module, exports, _dependencyMap) {
+  var _lib = _require(_dependencyMap[0], "./lib");
+
+  var _lib2 = _interopRequireDefault(_lib);
+
+  var _en = _require(_dependencyMap[1], "./lib/i18n/en");
+
+  var _en2 = _interopRequireDefault(_en);
+
+  var _bootstrap = _require(_dependencyMap[2], "./lib/templates/bootstrap");
+
+  var _bootstrap2 = _interopRequireDefault(_bootstrap);
+
+  var _bootstrap3 = _require(_dependencyMap[3], "./lib/stylesheets/bootstrap");
+
+  var _bootstrap4 = _interopRequireDefault(_bootstrap3);
+
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+  _lib2.default.form.Form.templates = _bootstrap2.default;
+  _lib2.default.form.Form.stylesheet = _bootstrap4.default;
+  _lib2.default.form.Form.i18n = _en2.default;
+  _lib2.default.form.Form.defaultProps = {
+    templates: _lib2.default.form.Form.templates,
+    stylesheet: _lib2.default.form.Form.stylesheet,
+    i18n: _lib2.default.form.Form.i18n
+  };
+  module.exports = _lib2.default;
+});

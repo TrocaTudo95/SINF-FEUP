@@ -1,0 +1,7 @@
+__d(function (global, _require, module, exports, _dependencyMap) {
+  var irreducible = _require(_dependencyMap[0], './irreducible');
+
+  var isNumber = _require(_dependencyMap[1], './isNumber');
+
+  module.exports = irreducible('Number', isNumber);
+});

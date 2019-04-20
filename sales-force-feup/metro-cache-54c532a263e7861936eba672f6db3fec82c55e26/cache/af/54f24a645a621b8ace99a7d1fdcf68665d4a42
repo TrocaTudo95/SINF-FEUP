@@ -1,0 +1,11 @@
+__d(function (global, _require, module, exports, _dependencyMap) {
+  var assert = _require(_dependencyMap[0], './assert');
+
+  var getTypeName = _require(_dependencyMap[1], './getTypeName');
+
+  module.exports = function forbidNewOperator(x, type) {
+    assert(!(x instanceof type), function () {
+      return 'Cannot use the new operator to instantiate the type ' + getTypeName(type);
+    });
+  };
+});

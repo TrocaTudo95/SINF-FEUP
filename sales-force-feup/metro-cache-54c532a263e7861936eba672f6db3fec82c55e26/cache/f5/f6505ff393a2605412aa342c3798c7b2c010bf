@@ -1,0 +1,38 @@
+__d(function (global, _require, module, exports, _dependencyMap) {
+    Object.defineProperty(exports, "__esModule", {
+        value: true
+    });
+    exports.loginWithToken = exports.logout = exports.login = exports.signup = undefined;
+
+    var _constants = _require(_dependencyMap[0], "./constants");
+
+    var _utils = _require(_dependencyMap[1], "../utils/utils");
+
+    var signup = exports.signup = function signup(salesmanCode, password) {
+        return (0, _utils.fetchRequest)(_utils.fetchRequestMethod.POST, _constants.HOST_FLASK + "auth/signup", {
+            salesmanCode: salesmanCode,
+            password: password
+        });
+    };
+
+    var login = exports.login = function login(salesmanCode, password) {
+        return (0, _utils.fetchRequest)(_utils.fetchRequestMethod.POST, _constants.HOST_FLASK + "auth/login", {
+            salesmanCode: salesmanCode,
+            password: password
+        });
+    };
+
+    var logout = exports.logout = function logout(userId, sessionToken) {
+        return (0, _utils.fetchRequest)(_utils.fetchRequestMethod.POST, _constants.HOST_FLASK + "auth/logout", {
+            userId: userId,
+            sessionToken: sessionToken
+        });
+    };
+
+    var loginWithToken = exports.loginWithToken = function loginWithToken(userId, sessionToken) {
+        return (0, _utils.fetchRequest)(_utils.fetchRequestMethod.POST, _constants.HOST_FLASK + "auth/loginWithToken", {
+            userId: userId,
+            sessionToken: sessionToken
+        });
+    };
+});

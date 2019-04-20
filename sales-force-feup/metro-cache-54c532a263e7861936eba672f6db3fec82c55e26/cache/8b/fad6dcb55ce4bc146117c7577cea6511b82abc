@@ -1,0 +1,5 @@
+__d(function (global, _require, module, exports, _dependencyMap) {
+  module.exports = function getFunctionName(f) {
+    return f.displayName || f.name || '<function' + f.length + '>';
+  };
+});

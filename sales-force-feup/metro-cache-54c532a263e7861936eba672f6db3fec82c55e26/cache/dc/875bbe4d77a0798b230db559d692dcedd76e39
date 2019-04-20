@@ -1,0 +1,8 @@
+__d(function (global, _require, module, exports, _dependencyMap) {
+  var t = _require(_dependencyMap[0], "tcomb-validation");
+
+  var form = _require(_dependencyMap[1], "./components");
+
+  t.form = form;
+  module.exports = t;
+});

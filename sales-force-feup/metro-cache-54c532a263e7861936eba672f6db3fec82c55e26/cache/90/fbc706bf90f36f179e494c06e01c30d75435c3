@@ -1,0 +1,13 @@
+__d(function (global, _require, module, exports, _dependencyMap) {
+  var isType = _require(_dependencyMap[0], './isType');
+
+  var getFunctionName = _require(_dependencyMap[1], './getFunctionName');
+
+  module.exports = function getTypeName(ctor) {
+    if (isType(ctor)) {
+      return ctor.displayName;
+    }
+
+    return getFunctionName(ctor);
+  };
+});

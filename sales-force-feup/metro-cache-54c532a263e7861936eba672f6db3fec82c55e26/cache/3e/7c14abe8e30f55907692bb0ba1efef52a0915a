@@ -1,0 +1,56 @@
+__d(function (global, _require, module, exports, _dependencyMap) {
+    Object.defineProperty(exports, "__esModule", {
+        value: true
+    });
+
+    var _class, _temp, _class2, _temp2, _class3, _temp3, _class4, _temp4;
+
+    function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+    var ACTION_TYPES = exports.ACTION_TYPES = {
+        TASKS: {
+            GET_TASKS: 'GET_TASKS'
+        },
+        AUTH: {
+            UPDATE_USER: 'UPDATE_USER'
+        },
+        PRODUCTS: {
+            UPDATE_PRODUCTS: 'UPDATE_PRODUCTS'
+        },
+        CUSTOMERS: {
+            UPDATE_CUSTOMERS: 'UPDATE_CUSTOMERS'
+        }
+    };
+    var taskActions = exports.taskActions = (_temp = _class = function taskActions() {
+        _classCallCheck(this, taskActions);
+    }, _class.updateTasks = function (tasks) {
+        return {
+            type: ACTION_TYPES.TASKS.GET_TASKS,
+            payload: tasks
+        };
+    }, _temp);
+    var authActions = exports.authActions = (_temp2 = _class2 = function authActions() {
+        _classCallCheck(this, authActions);
+    }, _class2.updateUser = function (user) {
+        return {
+            type: ACTION_TYPES.AUTH.UPDATE_USER,
+            payload: user
+        };
+    }, _temp2);
+    var productsActions = exports.productsActions = (_temp3 = _class3 = function productsActions() {
+        _classCallCheck(this, productsActions);
+    }, _class3.updateProducts = function (products) {
+        return {
+            type: ACTION_TYPES.PRODUCTS.UPDATE_PRODUCTS,
+            payload: products
+        };
+    }, _temp3);
+    var customersActions = exports.customersActions = (_temp4 = _class4 = function customersActions() {
+        _classCallCheck(this, customersActions);
+    }, _class4.updateCustomers = function (customers) {
+        return {
+            type: ACTION_TYPES.CUSTOMERS.UPDATE_CUSTOMERS,
+            payload: customers
+        };
+    }, _temp4);
+});

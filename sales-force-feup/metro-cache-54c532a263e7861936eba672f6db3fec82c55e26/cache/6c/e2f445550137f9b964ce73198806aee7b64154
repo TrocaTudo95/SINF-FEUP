@@ -1,0 +1,11 @@
+__d(function (global, _require, module, exports, _dependencyMap) {
+  var getTypeName = _require(_dependencyMap[0], './getTypeName');
+
+  function getDefaultInterfaceName(props) {
+    return '{' + Object.keys(props).map(function (prop) {
+      return prop + ': ' + getTypeName(props[prop]);
+    }).join(', ') + '}';
+  }
+
+  module.exports = getDefaultInterfaceName;
+});

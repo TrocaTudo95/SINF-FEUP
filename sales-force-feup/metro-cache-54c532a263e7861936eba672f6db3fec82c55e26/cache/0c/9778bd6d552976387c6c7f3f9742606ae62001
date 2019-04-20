@@ -1,0 +1,517 @@
+__d(function (global, _require, module, exports, _dependencyMap) {
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+
+  var _react2 = _require(_dependencyMap[0], "react");
+
+  var _react3 = _interopRequireDefault(_react2);
+
+  var _index = _require(_dependencyMap[1], "./../node_modules/react-transform-hmr/lib/index.js");
+
+  var _index2 = _interopRequireDefault(_index);
+
+  var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+  var _class,
+      _temp2,
+      _jsxFileName = "/home/trocatudo/sales-force-feup/sales-force-feup/views/ProductsList.js";
+
+  var _reactNative = _require(_dependencyMap[2], "react-native");
+
+  var _utils = _require(_dependencyMap[3], "../utils/utils");
+
+  var _reactRedux = _require(_dependencyMap[4], "react-redux");
+
+  var _Ionicons = _require(_dependencyMap[5], "@expo/vector-icons/Ionicons");
+
+  var _Ionicons2 = _interopRequireDefault(_Ionicons);
+
+  var _actions = _require(_dependencyMap[6], "../redux/actions");
+
+  var _products = _require(_dependencyMap[7], "../network/products");
+
+  var _reactNavigationDrawer = _require(_dependencyMap[8], "react-navigation-drawer");
+
+  var _base = _require(_dependencyMap[9], "base-64");
+
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+  function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+  function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+  function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+  var _components = {
+    ProductsList: {
+      displayName: "ProductsList"
+    },
+    ProductItemView: {
+      displayName: "ProductItemView"
+    }
+  };
+
+  var _node_modulesReactTransformHmrLibIndexJs2 = (0, _index2.default)({
+    filename: "/home/trocatudo/sales-force-feup/sales-force-feup/views/ProductsList.js",
+    components: _components,
+    locals: [module],
+    imports: [_react3.default]
+  });
+
+  function _wrapComponent(id) {
+    return function (Component) {
+      return _node_modulesReactTransformHmrLibIndexJs2(Component, id);
+    };
+  }
+
+  var ProductsList = _wrapComponent("ProductsList")((_temp2 = _class = function (_React$Component) {
+    _inherits(ProductsList, _React$Component);
+
+    function ProductsList() {
+      var _ref,
+          _this2 = this;
+
+      var _temp, _this, _ret;
+
+      _classCallCheck(this, ProductsList);
+
+      for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+        args[_key] = arguments[_key];
+      }
+
+      return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = ProductsList.__proto__ || Object.getPrototypeOf(ProductsList)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
+        loading: false,
+        text: 'Fetching products from Primavera...'
+      }, _this.fetchProducts = function _callee() {
+        var products;
+        return regeneratorRuntime.async(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _this.setState(function () {
+                  return {
+                    loading: true
+                  };
+                });
+
+                _context.prev = 1;
+                _context.next = 4;
+                return regeneratorRuntime.awrap((0, _products.fetchProducts)(_this.props.user.primaveraToken));
+
+              case 4:
+                products = _context.sent;
+
+                _this.props.updateProducts(products.body.DataSet.Table);
+
+                _this.setState(function () {
+                  return {
+                    loading: false,
+                    text: 'Fetching products from Primavera...'
+                  };
+                });
+
+                _context.next = 13;
+                break;
+
+              case 9:
+                _context.prev = 9;
+                _context.t0 = _context["catch"](1);
+
+                _this.props.updateProducts([]);
+
+                _this.setState(function () {
+                  return {
+                    loading: false,
+                    text: 'Could not connect to Primavera, please try again: ' + _context.t0.error
+                  };
+                });
+
+              case 13:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, null, _this2, [[1, 9]]);
+      }, _temp), _possibleConstructorReturn(_this, _ret);
+    }
+
+    _createClass(ProductsList, [{
+      key: "componentWillMount",
+      value: function componentWillMount() {
+        this.fetchProducts();
+        this.props.navigation.setParams({
+          fetchProducts: this.fetchProducts
+        });
+      }
+    }, {
+      key: "render",
+      value: function render() {
+        return _react3.default.createElement(
+          _reactNative.View,
+          {
+            style: _utils.Styles.products.mainView,
+            __source: {
+              fileName: _jsxFileName,
+              lineNumber: 84
+            }
+          },
+          this.state.loading ? _react3.default.createElement(
+            _reactNative.View,
+            {
+              __source: {
+                fileName: _jsxFileName,
+                lineNumber: 87
+              }
+            },
+            _react3.default.createElement(_reactNative.ActivityIndicator, {
+              size: "small",
+              color: _utils.ColorTheme.lightGreen,
+              style: {
+                paddingRight: 5,
+                paddingTop: 14.7,
+                paddingBottom: 14.7
+              },
+              __source: {
+                fileName: _jsxFileName,
+                lineNumber: 88
+              }
+            }),
+            _react3.default.createElement(
+              _reactNative.Text,
+              {
+                style: {
+                  color: _utils.ColorTheme.strongGrey
+                },
+                __source: {
+                  fileName: _jsxFileName,
+                  lineNumber: 89
+                }
+              },
+              this.state.text
+            )
+          ) : _react3.default.createElement(_reactNative.FlatList, {
+            data: this.props.products,
+            renderItem: function renderItem(_ref2) {
+              var item = _ref2.item;
+              return _react3.default.createElement(ProductItemView, {
+                item: {
+                  productName: item.Descricao,
+                  productId: item.Artigo,
+                  productStock: item.StkActual,
+                  productPrice: item.PVP1
+                },
+                __source: {
+                  fileName: _jsxFileName,
+                  lineNumber: 98
+                }
+              });
+            },
+            keyExtractor: function keyExtractor(item, index) {
+              return index.toString();
+            },
+            __source: {
+              fileName: _jsxFileName,
+              lineNumber: 93
+            }
+          })
+        );
+      }
+    }]);
+
+    return ProductsList;
+  }(_react3.default.Component), _class.navigationOptions = function (_ref3) {
+    var navigation = _ref3.navigation;
+    return {
+      headerTitle: _react3.default.createElement(
+        _reactNative.Text,
+        {
+          style: _utils.Styles.header.title,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 22
+          }
+        },
+        "Product Catalogue"
+      ),
+      headerRight: _react3.default.createElement(
+        _reactNative.View,
+        {
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 24
+          }
+        },
+        _react3.default.createElement(
+          _reactNative.TouchableOpacity,
+          {
+            onPress: function onPress() {
+              navigation.getParam('fetchProducts')();
+            },
+            __source: {
+              fileName: _jsxFileName,
+              lineNumber: 25
+            }
+          },
+          _react3.default.createElement(
+            _reactNative.View,
+            {
+              style: {
+                paddingRight: 10
+              },
+              __source: {
+                fileName: _jsxFileName,
+                lineNumber: 26
+              }
+            },
+            _react3.default.createElement(_Ionicons2.default, {
+              name: "ios-refresh",
+              size: 32,
+              color: _utils.ColorTheme.lightGreen,
+              __source: {
+                fileName: _jsxFileName,
+                lineNumber: 27
+              }
+            })
+          )
+        )
+      ),
+      headerLeft: _react3.default.createElement(
+        _reactNative.View,
+        {
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 34
+          }
+        },
+        _react3.default.createElement(
+          _reactNative.TouchableOpacity,
+          {
+            onPress: function onPress() {
+              return navigation.dispatch(_reactNavigationDrawer.DrawerActions.openDrawer());
+            },
+            __source: {
+              fileName: _jsxFileName,
+              lineNumber: 35
+            }
+          },
+          _react3.default.createElement(
+            _reactNative.View,
+            {
+              style: {
+                paddingLeft: 10
+              },
+              __source: {
+                fileName: _jsxFileName,
+                lineNumber: 38
+              }
+            },
+            _react3.default.createElement(_Ionicons2.default, {
+              name: "ios-menu-outline",
+              size: 32,
+              color: _utils.ColorTheme.lightGreen,
+              __source: {
+                fileName: _jsxFileName,
+                lineNumber: 39
+              }
+            })
+          )
+        )
+      )
+    };
+  }, _temp2));
+
+  var ProductItemView = _wrapComponent("ProductItemView")(function (_React$Component2) {
+    _inherits(ProductItemView, _React$Component2);
+
+    function ProductItemView() {
+      var _ref4,
+          _this4 = this;
+
+      var _temp3, _this3, _ret2;
+
+      _classCallCheck(this, ProductItemView);
+
+      for (var _len2 = arguments.length, args = Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
+        args[_key2] = arguments[_key2];
+      }
+
+      return _ret2 = (_temp3 = (_this3 = _possibleConstructorReturn(this, (_ref4 = ProductItemView.__proto__ || Object.getPrototypeOf(ProductItemView)).call.apply(_ref4, [this].concat(args))), _this3), _this3.state = {
+        pic: ''
+      }, _this3.getPicture = function _callee2() {
+        var pic, b64encodePicture;
+        return regeneratorRuntime.async(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                _context2.prev = 0;
+                _context2.next = 3;
+                return regeneratorRuntime.awrap((0, _products.fetchPicture)(_this3.props.item.productId));
+
+              case 3:
+                pic = _context2.sent;
+                b64encodePicture = (0, _base.encode)(pic.body.picture);
+
+                _this3.setState(function () {
+                  return {
+                    pic: pic.body.picture
+                  };
+                });
+
+                _context2.next = 10;
+                break;
+
+              case 8:
+                _context2.prev = 8;
+                _context2.t0 = _context2["catch"](0);
+
+              case 10:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, null, _this4, [[0, 8]]);
+      }, _temp3), _possibleConstructorReturn(_this3, _ret2);
+    }
+
+    _createClass(ProductItemView, [{
+      key: "componentDidMount",
+      value: function componentDidMount() {
+        this.getPicture();
+      }
+    }, {
+      key: "render",
+      value: function render() {
+        var color = parseInt(this.props.item.productStock) > 0 ? 'green' : 'red';
+        return _react3.default.createElement(
+          _reactNative.View,
+          {
+            style: _utils.Styles.products.item,
+            __source: {
+              fileName: _jsxFileName,
+              lineNumber: 151
+            }
+          },
+          _react3.default.createElement(
+            _reactNative.View,
+            {
+              style: {
+                flexDirection: 'row',
+                paddingBottom: 15
+              },
+              __source: {
+                fileName: _jsxFileName,
+                lineNumber: 152
+              }
+            },
+            _react3.default.createElement(_reactNative.Image, {
+              style: {
+                width: 100,
+                height: 100
+              },
+              source: {
+                uri: "data:image/png;base64," + this.state.pic
+              },
+              __source: {
+                fileName: _jsxFileName,
+                lineNumber: 153
+              }
+            }),
+            _react3.default.createElement(
+              _reactNative.View,
+              {
+                style: {
+                  flex: 1,
+                  paddingLeft: 10,
+                  flexDirection: 'row',
+                  justifyContent: 'space-between'
+                },
+                __source: {
+                  fileName: _jsxFileName,
+                  lineNumber: 158
+                }
+              },
+              _react3.default.createElement(
+                _reactNative.View,
+                {
+                  __source: {
+                    fileName: _jsxFileName,
+                    lineNumber: 159
+                  }
+                },
+                _react3.default.createElement(
+                  _reactNative.Text,
+                  {
+                    style: {
+                      fontSize: 25,
+                      color: _utils.ColorTheme.lightGrey
+                    },
+                    __source: {
+                      fileName: _jsxFileName,
+                      lineNumber: 160
+                    }
+                  },
+                  this.props.item.productName
+                ),
+                _react3.default.createElement(
+                  _reactNative.Text,
+                  {
+                    style: {
+                      fontSize: 17,
+                      color: color
+                    },
+                    __source: {
+                      fileName: _jsxFileName,
+                      lineNumber: 161
+                    }
+                  },
+                  this.props.item.productStock,
+                  " units"
+                )
+              ),
+              _react3.default.createElement(
+                _reactNative.Text,
+                {
+                  style: {
+                    paddingTop: 5,
+                    fontSize: 20,
+                    color: _utils.ColorTheme.lightGrey
+                  },
+                  __source: {
+                    fileName: _jsxFileName,
+                    lineNumber: 163
+                  }
+                },
+                parseFloat(this.props.item.productPrice).toFixed(2),
+                " \u20AC"
+              )
+            )
+          ),
+          _react3.default.createElement(_utils.Hr, {
+            color: _utils.ColorTheme.lightGrey,
+            lineHeight: 1,
+            offset: 10,
+            __source: {
+              fileName: _jsxFileName,
+              lineNumber: 167
+            }
+          })
+        );
+      }
+    }]);
+
+    return ProductItemView;
+  }(_react3.default.Component));
+
+  var mapPropsToState = function mapPropsToState(state) {
+    return {
+      products: state.products,
+      user: state.user
+    };
+  };
+
+  var actionTriggers = {
+    updateProducts: _actions.productsActions.updateProducts
+  };
+  exports.default = (0, _reactRedux.connect)(mapPropsToState, actionTriggers)(ProductsList);
+});

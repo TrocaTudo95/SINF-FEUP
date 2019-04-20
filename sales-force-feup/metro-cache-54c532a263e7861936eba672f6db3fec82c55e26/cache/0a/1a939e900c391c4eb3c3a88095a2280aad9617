@@ -1,0 +1,10 @@
+__d(function (global, _require, module, exports, _dependencyMap) {
+  module.exports = {
+    textbox: _require(_dependencyMap[0], "./textbox"),
+    checkbox: _require(_dependencyMap[1], "./checkbox"),
+    select: _require(_dependencyMap[2], "./select"),
+    datepicker: _require(_dependencyMap[3], "./datepicker"),
+    struct: _require(_dependencyMap[4], "./struct"),
+    list: _require(_dependencyMap[5], "./list")
+  };
+});

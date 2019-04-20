@@ -1,0 +1,7 @@
+__d(function (global, _require, module, exports, _dependencyMap) {
+  var irreducible = _require(_dependencyMap[0], './irreducible');
+
+  module.exports = irreducible('RegExp', function (x) {
+    return x instanceof RegExp;
+  });
+});

@@ -1,0 +1,9 @@
+__d(function (global, _require, module, exports, _dependencyMap) {
+  var isFunction = _require(_dependencyMap[0], './isFunction');
+
+  var isObject = _require(_dependencyMap[1], './isObject');
+
+  module.exports = function isType(x) {
+    return isFunction(x) && isObject(x.meta);
+  };
+});

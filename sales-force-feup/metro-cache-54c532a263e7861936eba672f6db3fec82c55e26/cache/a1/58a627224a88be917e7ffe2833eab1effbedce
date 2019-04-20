@@ -1,0 +1,59 @@
+__d(function (global, _require, module, exports, _dependencyMap) {
+  /*! @preserve
+   *
+   * tcomb.js - Type checking and DDD for JavaScript
+   *
+   * The MIT License (MIT)
+   *
+   * Copyright (c) 2014-2016 Giulio Canti
+   *
+   */var t = _require(_dependencyMap[0], './lib/assert');
+
+  t.Any = _require(_dependencyMap[1], './lib/Any');
+  t.Array = _require(_dependencyMap[2], './lib/Array');
+  t.Boolean = _require(_dependencyMap[3], './lib/Boolean');
+  t.Date = _require(_dependencyMap[4], './lib/Date');
+  t.Error = _require(_dependencyMap[5], './lib/Error');
+  t.Function = _require(_dependencyMap[6], './lib/Function');
+  t.Nil = _require(_dependencyMap[7], './lib/Nil');
+  t.Number = _require(_dependencyMap[8], './lib/Number');
+  t.Integer = _require(_dependencyMap[9], './lib/Integer');
+  t.IntegerT = t.Integer;
+  t.Object = _require(_dependencyMap[10], './lib/Object');
+  t.RegExp = _require(_dependencyMap[11], './lib/RegExp');
+  t.String = _require(_dependencyMap[12], './lib/String');
+  t.Type = _require(_dependencyMap[13], './lib/Type');
+  t.TypeT = t.Type;
+  t.Arr = t.Array;
+  t.Bool = t.Boolean;
+  t.Dat = t.Date;
+  t.Err = t.Error;
+  t.Func = t.Function;
+  t.Num = t.Number;
+  t.Obj = t.Object;
+  t.Re = t.RegExp;
+  t.Str = t.String;
+  t.dict = _require(_dependencyMap[14], './lib/dict');
+  t.declare = _require(_dependencyMap[15], './lib/declare');
+  t.enums = _require(_dependencyMap[16], './lib/enums');
+  t.irreducible = _require(_dependencyMap[17], './lib/irreducible');
+  t.list = _require(_dependencyMap[18], './lib/list');
+  t.maybe = _require(_dependencyMap[19], './lib/maybe');
+  t.refinement = _require(_dependencyMap[20], './lib/refinement');
+  t.struct = _require(_dependencyMap[21], './lib/struct');
+  t.tuple = _require(_dependencyMap[22], './lib/tuple');
+  t.union = _require(_dependencyMap[23], './lib/union');
+  t.func = _require(_dependencyMap[24], './lib/func');
+  t.intersection = _require(_dependencyMap[25], './lib/intersection');
+  t.subtype = t.refinement;
+  t.inter = _require(_dependencyMap[26], './lib/interface');
+  t['interface'] = t.inter;
+  t.assert = t;
+  t.update = _require(_dependencyMap[27], './lib/update');
+  t.mixin = _require(_dependencyMap[28], './lib/mixin');
+  t.isType = _require(_dependencyMap[29], './lib/isType');
+  t.is = _require(_dependencyMap[30], './lib/is');
+  t.getTypeName = _require(_dependencyMap[31], './lib/getTypeName');
+  t.match = _require(_dependencyMap[32], './lib/match');
+  module.exports = t;
+});

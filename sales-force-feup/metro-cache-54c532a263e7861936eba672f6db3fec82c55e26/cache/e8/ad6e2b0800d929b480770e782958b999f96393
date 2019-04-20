@@ -1,0 +1,40 @@
+__d(function (global, _require, module, exports, _dependencyMap) {
+  var assert = _require(_dependencyMap[0], './assert');
+
+  var isString = _require(_dependencyMap[1], './isString');
+
+  var isFunction = _require(_dependencyMap[2], './isFunction');
+
+  var forbidNewOperator = _require(_dependencyMap[3], './forbidNewOperator');
+
+  module.exports = function irreducible(name, predicate) {
+    if (process.env.NODE_ENV !== 'production') {
+      assert(isString(name), function () {
+        return 'Invalid argument name ' + assert.stringify(name) + ' supplied to irreducible(name, predicate) (expected a string)';
+      });
+      assert(isFunction(predicate), 'Invalid argument predicate ' + assert.stringify(predicate) + ' supplied to irreducible(name, predicate) (expected a function)');
+    }
+
+    function Irreducible(value, path) {
+      if (process.env.NODE_ENV !== 'production') {
+        forbidNewOperator(this, Irreducible);
+        path = path || [name];
+        assert(predicate(value), function () {
+          return 'Invalid value ' + assert.stringify(value) + ' supplied to ' + path.join('/');
+        });
+      }
+
+      return value;
+    }
+
+    Irreducible.meta = {
+      kind: 'irreducible',
+      name: name,
+      predicate: predicate,
+      identity: true
+    };
+    Irreducible.displayName = name;
+    Irreducible.is = predicate;
+    return Irreducible;
+  };
+});

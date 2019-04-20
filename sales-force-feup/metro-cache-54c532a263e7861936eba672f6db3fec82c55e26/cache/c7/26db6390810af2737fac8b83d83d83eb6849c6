@@ -1,0 +1,7 @@
+__d(function (global, _require, module, exports, _dependencyMap) {
+  var irreducible = _require(_dependencyMap[0], './irreducible');
+
+  var isType = _require(_dependencyMap[1], './isType');
+
+  module.exports = irreducible('Type', isType);
+});

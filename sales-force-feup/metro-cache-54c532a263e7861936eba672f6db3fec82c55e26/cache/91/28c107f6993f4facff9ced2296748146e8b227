@@ -1,0 +1,374 @@
+__d(function (global, _require, module, exports, _dependencyMap) {
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+
+  var _react2 = _require(_dependencyMap[0], "react");
+
+  var _react3 = _interopRequireDefault(_react2);
+
+  var _index = _require(_dependencyMap[1], "./../node_modules/react-transform-hmr/lib/index.js");
+
+  var _index2 = _interopRequireDefault(_index);
+
+  var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+  var _class,
+      _temp2,
+      _jsxFileName = "/home/trocatudo/sales-force-feup/sales-force-feup/views/Customers.js";
+
+  var _reactNative = _require(_dependencyMap[2], "react-native");
+
+  var _utils = _require(_dependencyMap[3], "../utils/utils");
+
+  var _reactRedux = _require(_dependencyMap[4], "react-redux");
+
+  var _Ionicons = _require(_dependencyMap[5], "@expo/vector-icons/Ionicons");
+
+  var _Ionicons2 = _interopRequireDefault(_Ionicons);
+
+  var _actions = _require(_dependencyMap[6], "../redux/actions");
+
+  var _customers = _require(_dependencyMap[7], "../network/customers");
+
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+  function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+  function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+  function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+  var _components = {
+    Customers: {
+      displayName: "Customers"
+    },
+    CustomerItemView: {
+      displayName: "CustomerItemView"
+    }
+  };
+
+  var _node_modulesReactTransformHmrLibIndexJs2 = (0, _index2.default)({
+    filename: "/home/trocatudo/sales-force-feup/sales-force-feup/views/Customers.js",
+    components: _components,
+    locals: [module],
+    imports: [_react3.default]
+  });
+
+  function _wrapComponent(id) {
+    return function (Component) {
+      return _node_modulesReactTransformHmrLibIndexJs2(Component, id);
+    };
+  }
+
+  var Customers = _wrapComponent("Customers")((_temp2 = _class = function (_React$Component) {
+    _inherits(Customers, _React$Component);
+
+    function Customers() {
+      var _ref,
+          _this2 = this;
+
+      var _temp, _this, _ret;
+
+      _classCallCheck(this, Customers);
+
+      for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+        args[_key] = arguments[_key];
+      }
+
+      return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Customers.__proto__ || Object.getPrototypeOf(Customers)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
+        loading: false,
+        text: 'Fetching customers from Primavera...'
+      }, _this.fetchCustomers = function _callee() {
+        var customers;
+        return regeneratorRuntime.async(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _this.setState(function () {
+                  return {
+                    loading: true
+                  };
+                });
+
+                _context.prev = 1;
+                _context.next = 4;
+                return regeneratorRuntime.awrap((0, _customers.fetchCustomers)(_this.props.user.primaveraToken.access_token));
+
+              case 4:
+                customers = _context.sent;
+
+                _this.props.updateCustomers(customers.body.DataSet.Table);
+
+                _this.setState(function () {
+                  return {
+                    loading: false,
+                    text: 'Fetching customers from Primavera...'
+                  };
+                });
+
+                _context.next = 12;
+                break;
+
+              case 9:
+                _context.prev = 9;
+                _context.t0 = _context["catch"](1);
+
+                _this.setState(function () {
+                  return {
+                    loading: false,
+                    text: 'Could not connect to Primavera, please try again'
+                  };
+                });
+
+              case 12:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, null, _this2, [[1, 9]]);
+      }, _this.nativateToDetails = function (id) {
+        _this.props.navigation.navigate("CustomerPage", {
+          customerId: id
+        });
+      }, _temp), _possibleConstructorReturn(_this, _ret);
+    }
+
+    _createClass(Customers, [{
+      key: "componentWillMount",
+      value: function componentWillMount() {
+        this.fetchCustomers();
+        this.props.navigation.setParams({
+          fetchCustomers: this.fetchCustomers
+        });
+      }
+    }, {
+      key: "render",
+      value: function render() {
+        var _this3 = this;
+
+        return _react3.default.createElement(
+          _reactNative.View,
+          {
+            style: _utils.Styles.products.mainView,
+            __source: {
+              fileName: _jsxFileName,
+              lineNumber: 71
+            }
+          },
+          this.state.loading ? _react3.default.createElement(
+            _reactNative.View,
+            {
+              __source: {
+                fileName: _jsxFileName,
+                lineNumber: 74
+              }
+            },
+            _react3.default.createElement(_reactNative.ActivityIndicator, {
+              size: "small",
+              color: _utils.ColorTheme.lightGreen,
+              style: {
+                paddingRight: 5,
+                paddingTop: 14.7,
+                paddingBottom: 14.7
+              },
+              __source: {
+                fileName: _jsxFileName,
+                lineNumber: 75
+              }
+            }),
+            _react3.default.createElement(
+              _reactNative.Text,
+              {
+                style: {
+                  color: _utils.ColorTheme.strongGrey
+                },
+                __source: {
+                  fileName: _jsxFileName,
+                  lineNumber: 76
+                }
+              },
+              this.state.text
+            )
+          ) : _react3.default.createElement(_reactNative.FlatList, {
+            data: this.props.customers,
+            renderItem: function renderItem(_ref2) {
+              var item = _ref2.item;
+              return _react3.default.createElement(CustomerItemView, {
+                item: {
+                  customerId: item.Cliente,
+                  customerName: item.Nome,
+                  customerAdress: item.Fac_Mor
+                },
+                navigateFunction: _this3.nativateToDetails,
+                __source: {
+                  fileName: _jsxFileName,
+                  lineNumber: 85
+                }
+              });
+            },
+            keyExtractor: function keyExtractor(item, index) {
+              return index.toString();
+            },
+            __source: {
+              fileName: _jsxFileName,
+              lineNumber: 80
+            }
+          })
+        );
+      }
+    }]);
+
+    return Customers;
+  }(_react3.default.Component), _class.navigationOptions = function (_ref3) {
+    var navigation = _ref3.navigation;
+    return {
+      headerTitle: _react3.default.createElement(
+        _reactNative.Text,
+        {
+          style: _utils.Styles.header.title,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 19
+          }
+        },
+        " Customers"
+      ),
+      headerRight: _react3.default.createElement(
+        _reactNative.View,
+        {
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 21
+          }
+        },
+        _react3.default.createElement(
+          _reactNative.TouchableOpacity,
+          {
+            onPress: function onPress() {
+              navigation.navigate("NewCustomerView", {
+                fetchCustomers: navigation.getParam("fetchCustomers")
+              });
+            },
+            __source: {
+              fileName: _jsxFileName,
+              lineNumber: 22
+            }
+          },
+          _react3.default.createElement(
+            _reactNative.View,
+            {
+              style: {
+                paddingRight: 10
+              },
+              __source: {
+                fileName: _jsxFileName,
+                lineNumber: 23
+              }
+            },
+            _react3.default.createElement(_Ionicons2.default, {
+              name: "md-add",
+              size: 32,
+              color: _utils.ColorTheme.lightGreen,
+              __source: {
+                fileName: _jsxFileName,
+                lineNumber: 24
+              }
+            })
+          )
+        )
+      )
+    };
+  }, _temp2));
+
+  var CustomerItemView = _wrapComponent("CustomerItemView")(function (_React$Component2) {
+    _inherits(CustomerItemView, _React$Component2);
+
+    function CustomerItemView() {
+      _classCallCheck(this, CustomerItemView);
+
+      return _possibleConstructorReturn(this, (CustomerItemView.__proto__ || Object.getPrototypeOf(CustomerItemView)).apply(this, arguments));
+    }
+
+    _createClass(CustomerItemView, [{
+      key: "render",
+      value: function render() {
+        var _this5 = this;
+
+        return _react3.default.createElement(
+          _reactNative.TouchableOpacity,
+          {
+            onPress: function onPress() {
+              _this5.props.navigateFunction(_this5.props.item.customerId);
+            },
+            __source: {
+              fileName: _jsxFileName,
+              lineNumber: 110
+            }
+          },
+          _react3.default.createElement(
+            _reactNative.View,
+            {
+              style: _utils.Styles.products.item,
+              __source: {
+                fileName: _jsxFileName,
+                lineNumber: 111
+              }
+            },
+            _react3.default.createElement(
+              _reactNative.Text,
+              {
+                style: {
+                  fontSize: 16,
+                  marginRight: 10
+                },
+                __source: {
+                  fileName: _jsxFileName,
+                  lineNumber: 112
+                }
+              },
+              " ",
+              this.props.item.customerName
+            ),
+            _react3.default.createElement(
+              _reactNative.Text,
+              {
+                style: {
+                  fontSize: 17
+                },
+                __source: {
+                  fileName: _jsxFileName,
+                  lineNumber: 113
+                }
+              },
+              this.props.item.customerAdress
+            )
+          ),
+          _react3.default.createElement(_utils.Hr, {
+            color: _utils.ColorTheme.lightGrey,
+            lineHeight: 1,
+            offset: 15,
+            __source: {
+              fileName: _jsxFileName,
+              lineNumber: 115
+            }
+          })
+        );
+      }
+    }]);
+
+    return CustomerItemView;
+  }(_react3.default.Component));
+
+  var mapPropsToState = function mapPropsToState(state) {
+    return {
+      customers: state.customers,
+      user: state.user
+    };
+  };
+
+  var actionTriggers = {
+    updateCustomers: _actions.customersActions.updateCustomers
+  };
+  exports.default = (0, _reactRedux.connect)(mapPropsToState, actionTriggers)(Customers);
+});

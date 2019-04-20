@@ -1,0 +1,390 @@
+__d(function (global, _require, module, exports, _dependencyMap) {
+    Object.defineProperty(exports, "__esModule", {
+        value: true
+    });
+
+    var _react2 = _require(_dependencyMap[0], "react");
+
+    var _react3 = _interopRequireDefault(_react2);
+
+    var _index = _require(_dependencyMap[1], "./../node_modules/react-transform-hmr/lib/index.js");
+
+    var _index2 = _interopRequireDefault(_index);
+
+    var _jsxFileName = "/home/trocatudo/sales-force-feup/sales-force-feup/views/Signup.js";
+
+    var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+    var _reactNative = _require(_dependencyMap[2], "react-native");
+
+    var _authentication = _require(_dependencyMap[3], "../network/authentication");
+
+    var _utils = _require(_dependencyMap[4], "../utils/utils");
+
+    function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+    function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+    function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+    function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+    var _components = {
+        Signup: {
+            displayName: "Signup"
+        }
+    };
+
+    var _node_modulesReactTransformHmrLibIndexJs2 = (0, _index2.default)({
+        filename: "/home/trocatudo/sales-force-feup/sales-force-feup/views/Signup.js",
+        components: _components,
+        locals: [module],
+        imports: [_react3.default]
+    });
+
+    function _wrapComponent(id) {
+        return function (Component) {
+            return _node_modulesReactTransformHmrLibIndexJs2(Component, id);
+        };
+    }
+
+    var Signup = _wrapComponent("Signup")(function (_React$Component) {
+        _inherits(Signup, _React$Component);
+
+        function Signup() {
+            var _ref;
+
+            var _temp, _this, _ret;
+
+            _classCallCheck(this, Signup);
+
+            for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+                args[_key] = arguments[_key];
+            }
+
+            return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Signup.__proto__ || Object.getPrototypeOf(Signup)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
+                salesmanCode: '',
+                salesmanCodeCorrect: true,
+                password: '',
+                passwordCorrect: true,
+                repeatPassword: '',
+                repeatPasswordCorrect: true,
+                activityIndicator: false,
+                salesmanCodeError: ""
+            }, _this.handleSubmit = function () {
+                var pwdRegex = /^(?=.*[A-Z])(?=.*[a-z])(?=.*[1-9])(?=.{6,})/;
+                var salesmanCode = _this.state.salesmanCode;
+
+                var pwd = _this.state.password.match(pwdRegex);
+
+                var repeatPwd = _this.state.password === _this.state.repeatPassword;
+                var ok = true;
+
+                _this.setState({
+                    activityIndicator: true
+                });
+
+                if (salesmanCode === '') {
+                    _this.setState({
+                        salesmanCodeCorrect: false,
+                        activityIndicator: false
+                    });
+
+                    ok = false;
+                }
+
+                if (pwd === null) {
+                    _this.setState({
+                        passwordCorrect: false,
+                        activityIndicator: false
+                    });
+
+                    ok = false;
+                }
+
+                if (repeatPwd === false && pwd !== null) {
+                    _this.setState({
+                        repeatPasswordCorrect: false,
+                        activityIndicator: false
+                    });
+
+                    ok = false;
+                }
+
+                if (ok) {
+                    var userPromise = (0, _authentication.signup)(_this.state.salesmanCode, _this.state.password);
+                    userPromise.then(function (result) {
+                        _this.setState({
+                            activityIndicator: false
+                        });
+
+                        _this.props.navigation.navigate('Login', {
+                            msg: 'User successfully created!',
+                            salesmanCode: _this.state.salesmanCode,
+                            salesmanName: result.body.name
+                        });
+                    }).catch(function (error) {
+                        _this.setState({
+                            userError: error.error,
+                            activityIndicator: false
+                        });
+                    });
+                }
+            }, _temp), _possibleConstructorReturn(_this, _ret);
+        }
+
+        _createClass(Signup, [{
+            key: "render",
+            value: function render() {
+                var _this2 = this;
+
+                var salesmanCodeError = !this.state.salesmanCodeCorrect ? _react3.default.createElement(
+                    _reactNative.View,
+                    {
+                        style: _utils.Styles.loginSignup.warningsView,
+                        __source: {
+                            fileName: _jsxFileName,
+                            lineNumber: 72
+                        }
+                    },
+                    _react3.default.createElement(
+                        _reactNative.Text,
+                        {
+                            style: _utils.Styles.loginSignup.warnings,
+                            __source: {
+                                fileName: _jsxFileName,
+                                lineNumber: 73
+                            }
+                        },
+                        " Salesman identification is mandatory"
+                    )
+                ) : null;
+                var pwdError = !this.state.passwordCorrect ? _react3.default.createElement(
+                    _reactNative.View,
+                    {
+                        style: _utils.Styles.loginSignup.warningsView,
+                        __source: {
+                            fileName: _jsxFileName,
+                            lineNumber: 79
+                        }
+                    },
+                    _react3.default.createElement(
+                        _reactNative.Text,
+                        {
+                            style: _utils.Styles.loginSignup.warnings,
+                            __source: {
+                                fileName: _jsxFileName,
+                                lineNumber: 80
+                            }
+                        },
+                        " Password must have 1 capital, 1 low letter and 1 number and be at least 6 chars long "
+                    )
+                ) : null;
+                var pwdRepeatError = !this.state.repeatPasswordCorrect ? _react3.default.createElement(
+                    _reactNative.View,
+                    {
+                        style: _utils.Styles.loginSignup.warningsView,
+                        __source: {
+                            fileName: _jsxFileName,
+                            lineNumber: 86
+                        }
+                    },
+                    _react3.default.createElement(
+                        _reactNative.Text,
+                        {
+                            style: _utils.Styles.loginSignup.warnings,
+                            __source: {
+                                fileName: _jsxFileName,
+                                lineNumber: 87
+                            }
+                        },
+                        " Passwords do not match "
+                    )
+                ) : null;
+                return _react3.default.createElement(
+                    _reactNative.KeyboardAvoidingView,
+                    {
+                        style: _utils.Styles.loginSignup.mainView,
+                        behavior: "padding",
+                        enabled: true,
+                        __source: {
+                            fileName: _jsxFileName,
+                            lineNumber: 93
+                        }
+                    },
+                    _react3.default.createElement(
+                        _reactNative.View,
+                        {
+                            style: _utils.Styles.loginSignup.upperView,
+                            __source: {
+                                fileName: _jsxFileName,
+                                lineNumber: 95
+                            }
+                        },
+                        _react3.default.createElement(
+                            _reactNative.Text,
+                            {
+                                style: _utils.Styles.loginSignup.logo,
+                                __source: {
+                                    fileName: _jsxFileName,
+                                    lineNumber: 96
+                                }
+                            },
+                            "Salesman Signup"
+                        )
+                    ),
+                    _react3.default.createElement(
+                        _reactNative.View,
+                        {
+                            style: _utils.Styles.loginSignup.warningsView,
+                            __source: {
+                                fileName: _jsxFileName,
+                                lineNumber: 99
+                            }
+                        },
+                        _react3.default.createElement(
+                            _reactNative.Text,
+                            {
+                                style: _utils.Styles.loginSignup.warnings,
+                                __source: {
+                                    fileName: _jsxFileName,
+                                    lineNumber: 100
+                                }
+                            },
+                            this.state.userError
+                        )
+                    ),
+                    _react3.default.createElement(_reactNative.ActivityIndicator, {
+                        size: "large",
+                        color: _utils.ColorTheme.strongGreen,
+                        animating: this.state.activityIndicator,
+                        __source: {
+                            fileName: _jsxFileName,
+                            lineNumber: 103
+                        }
+                    }),
+                    _react3.default.createElement(
+                        _reactNative.View,
+                        {
+                            style: _utils.Styles.loginSignup.bottomView,
+                            __source: {
+                                fileName: _jsxFileName,
+                                lineNumber: 105
+                            }
+                        },
+                        _react3.default.createElement(_reactNative.TextInput, {
+                            style: _utils.Styles.loginSignup.textField,
+                            placeholder: "salesman code",
+                            placeholderTextColor: _utils.ColorTheme.white,
+                            onChangeText: function onChangeText(text) {
+                                return _this2.setState({
+                                    salesmanCode: text,
+                                    salesmanCodeCorrect: true
+                                });
+                            },
+                            value: this.state.username,
+                            autoCapitalize: "none",
+                            __source: {
+                                fileName: _jsxFileName,
+                                lineNumber: 107
+                            }
+                        }),
+                        salesmanCodeError,
+                        _react3.default.createElement(_reactNative.TextInput, {
+                            style: _utils.Styles.loginSignup.textField,
+                            placeholder: "password",
+                            placeholderTextColor: _utils.ColorTheme.white,
+                            onChangeText: function onChangeText(text) {
+                                return _this2.setState({
+                                    password: text,
+                                    passwordCorrect: true
+                                });
+                            },
+                            value: this.state.password,
+                            autoCapitalize: "none",
+                            secureTextEntry: true,
+                            __source: {
+                                fileName: _jsxFileName,
+                                lineNumber: 116
+                            }
+                        }),
+                        pwdError,
+                        _react3.default.createElement(_reactNative.TextInput, {
+                            style: _utils.Styles.loginSignup.textField,
+                            placeholderTextColor: _utils.ColorTheme.white,
+                            placeholder: "repeat password",
+                            onChangeText: function onChangeText(text) {
+                                return _this2.setState({
+                                    repeatPassword: text,
+                                    repeatPasswordCorrect: true
+                                });
+                            },
+                            value: this.state.repeatPassword,
+                            autoCapitalize: "none",
+                            secureTextEntry: true,
+                            __source: {
+                                fileName: _jsxFileName,
+                                lineNumber: 126
+                            }
+                        }),
+                        pwdRepeatError,
+                        _react3.default.createElement(
+                            _reactNative.TouchableOpacity,
+                            {
+                                onPress: function onPress() {
+                                    _this2.handleSubmit();
+                                },
+                                style: _utils.Styles.loginSignup.buttonView,
+                                __source: {
+                                    fileName: _jsxFileName,
+                                    lineNumber: 137
+                                }
+                            },
+                            _react3.default.createElement(
+                                _reactNative.Text,
+                                {
+                                    style: _utils.Styles.loginSignup.button,
+                                    __source: {
+                                        fileName: _jsxFileName,
+                                        lineNumber: 141
+                                    }
+                                },
+                                "Confirm"
+                            )
+                        ),
+                        _react3.default.createElement(
+                            _reactNative.TouchableOpacity,
+                            {
+                                onPress: function onPress() {
+                                    _this2.props.navigation.navigate('Login');
+                                },
+                                style: {
+                                    marginTop: 50
+                                },
+                                __source: {
+                                    fileName: _jsxFileName,
+                                    lineNumber: 144
+                                }
+                            },
+                            _react3.default.createElement(
+                                _reactNative.Text,
+                                {
+                                    style: _utils.Styles.loginSignup.button,
+                                    __source: {
+                                        fileName: _jsxFileName,
+                                        lineNumber: 148
+                                    }
+                                },
+                                "Cancel"
+                            )
+                        )
+                    )
+                );
+            }
+        }]);
+
+        return Signup;
+    }(_react3.default.Component));
+
+    exports.default = Signup;
+});

@@ -1,0 +1,9 @@
+__d(function (global, _require, module, exports, _dependencyMap) {
+  var refinement = _require(_dependencyMap[0], './refinement');
+
+  var Number = _require(_dependencyMap[1], './Number');
+
+  module.exports = refinement(Number, function (x) {
+    return x % 1 === 0;
+  }, 'Integer');
+});

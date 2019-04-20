@@ -1,0 +1,18 @@
+__d(function (global, _require, module, exports, _dependencyMap) {
+  "use strict";
+
+  var _interopRequireDefault = _require(_dependencyMap[0], "@babel/runtime/helpers/interopRequireDefault");
+
+  exports.__esModule = true;
+  exports.default = verifyPlainObject;
+
+  var _isPlainObject = _interopRequireDefault(_require(_dependencyMap[1], "./isPlainObject"));
+
+  var _warning = _interopRequireDefault(_require(_dependencyMap[2], "./warning"));
+
+  function verifyPlainObject(value, displayName, methodName) {
+    if (!(0, _isPlainObject.default)(value)) {
+      (0, _warning.default)(methodName + "() in " + displayName + " must return a plain object. Instead received " + value + ".");
+    }
+  }
+});

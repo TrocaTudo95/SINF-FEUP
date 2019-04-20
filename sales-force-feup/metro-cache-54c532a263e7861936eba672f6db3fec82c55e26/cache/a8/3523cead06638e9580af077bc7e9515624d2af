@@ -1,0 +1,24 @@
+__d(function (global, _require, module, exports, _dependencyMap) {
+    Object.defineProperty(exports, "__esModule", {
+        value: true
+    });
+    exports.deleteTask = exports.updateTask = exports.fetchTasks = undefined;
+
+    var _constants = _require(_dependencyMap[0], "./constants");
+
+    var _utils = _require(_dependencyMap[1], "../utils/utils");
+
+    var fetchTasks = exports.fetchTasks = function fetchTasks() {
+        return (0, _utils.fetchRequest)(_utils.fetchRequestMethod.GET, _constants.HOST_FLASK + "tasks");
+    };
+
+    var updateTask = exports.updateTask = function updateTask(id, completed) {
+        return (0, _utils.fetchRequest)(_utils.fetchRequestMethod.PUT, _constants.HOST_FLASK + "tasks/" + id + "/", {
+            completed: completed
+        });
+    };
+
+    var deleteTask = exports.deleteTask = function deleteTask(id) {
+        return (0, _utils.fetchRequest)(_utils.fetchRequestMethod.DELETE, _constants.HOST_FLASK + "tasks/" + id + "/");
+    };
+});

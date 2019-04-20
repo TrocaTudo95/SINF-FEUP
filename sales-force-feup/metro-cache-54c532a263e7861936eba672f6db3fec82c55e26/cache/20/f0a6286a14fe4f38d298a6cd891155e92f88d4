@@ -1,0 +1,19 @@
+__d(function (global, _require, module, exports, _dependencyMap) {
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  exports.CUSTOMERS_DETAILS_URL = exports.CREATE_CUSTOMER_URL = exports.CUSTOMERS_URL = exports.RAW_QUERY_ROUTE = exports.HOST_PRIMAVERA = exports.HOST_FLASK = undefined;
+
+  var _hostname = _require(_dependencyMap[0], "./hostname");
+
+  var _hostname2 = _interopRequireDefault(_hostname);
+
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+  var HOST_FLASK = exports.HOST_FLASK = "localhost:1115/";
+  var HOST_PRIMAVERA = exports.HOST_PRIMAVERA = _hostname2.default + ":80/WebApi/";
+  var RAW_QUERY_ROUTE = exports.RAW_QUERY_ROUTE = HOST_PRIMAVERA + "Administrador/Consulta";
+  var CUSTOMERS_URL = exports.CUSTOMERS_URL = HOST_PRIMAVERA + "Base/Clientes/LstClientes";
+  var CREATE_CUSTOMER_URL = exports.CREATE_CUSTOMER_URL = HOST_PRIMAVERA + "Base/Clientes/Actualiza";
+  var CUSTOMERS_DETAILS_URL = exports.CUSTOMERS_DETAILS_URL = HOST_PRIMAVERA + "Base/Clientes/Edita/";
+});

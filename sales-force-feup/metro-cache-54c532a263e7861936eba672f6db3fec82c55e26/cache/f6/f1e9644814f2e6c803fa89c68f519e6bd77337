@@ -1,0 +1,5 @@
+__d(function (global, _require, module, exports, _dependencyMap) {
+  module.exports = function isFunction(x) {
+    return typeof x === 'function';
+  };
+});

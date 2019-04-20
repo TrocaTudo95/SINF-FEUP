@@ -1,0 +1,117 @@
+__d(function (global, _require2, module, exports, _dependencyMap) {
+  var _jsxFileName = "/home/trocatudo/sales-force-feup/sales-force-feup/node_modules/tcomb-form-native/lib/templates/bootstrap/select.android.js";
+
+  var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+  var React = _require2(_dependencyMap[0], "react");
+
+  var _require = _require2(_dependencyMap[1], "react-native"),
+      View = _require.View,
+      Text = _require.Text,
+      Picker = _require.Picker;
+
+  function select(locals) {
+    if (locals.hidden) {
+      return null;
+    }
+
+    var stylesheet = locals.stylesheet;
+    var formGroupStyle = stylesheet.formGroup.normal;
+    var controlLabelStyle = stylesheet.controlLabel.normal;
+
+    var selectStyle = _extends({}, stylesheet.select.normal, stylesheet.pickerContainer.normal);
+
+    var helpBlockStyle = stylesheet.helpBlock.normal;
+    var errorBlockStyle = stylesheet.errorBlock;
+
+    if (locals.hasError) {
+      formGroupStyle = stylesheet.formGroup.error;
+      controlLabelStyle = stylesheet.controlLabel.error;
+      selectStyle = stylesheet.select.error;
+      helpBlockStyle = stylesheet.helpBlock.error;
+    }
+
+    var label = locals.label ? React.createElement(
+      Text,
+      {
+        style: controlLabelStyle,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 28
+        }
+      },
+      locals.label
+    ) : null;
+    var help = locals.help ? React.createElement(
+      Text,
+      {
+        style: helpBlockStyle,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 31
+        }
+      },
+      locals.help
+    ) : null;
+    var error = locals.hasError && locals.error ? React.createElement(
+      Text,
+      {
+        accessibilityLiveRegion: "polite",
+        style: errorBlockStyle,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 35
+        }
+      },
+      locals.error
+    ) : null;
+    var options = locals.options.map(function (_ref) {
+      var value = _ref.value,
+          text = _ref.text;
+      return React.createElement(Picker.Item, {
+        key: value,
+        value: value,
+        label: text,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 41
+        }
+      });
+    });
+    return React.createElement(
+      View,
+      {
+        style: formGroupStyle,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 45
+        }
+      },
+      label,
+      React.createElement(
+        Picker,
+        {
+          accessibilityLabel: locals.label,
+          ref: "input",
+          style: selectStyle,
+          selectedValue: locals.value,
+          onValueChange: locals.onChange,
+          help: locals.help,
+          enabled: !locals.disabled,
+          mode: locals.mode,
+          prompt: locals.prompt,
+          itemStyle: locals.itemStyle,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 47
+          }
+        },
+        options
+      ),
+      help,
+      error
+    );
+  }
+
+  module.exports = select;
+});

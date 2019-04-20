@@ -1,0 +1,453 @@
+__d(function (global, _require, module, exports, _dependencyMap) {
+    Object.defineProperty(exports, "__esModule", {
+        value: true
+    });
+
+    var _react2 = _require(_dependencyMap[0], "react");
+
+    var _react3 = _interopRequireDefault(_react2);
+
+    var _index = _require(_dependencyMap[1], "./../node_modules/react-transform-hmr/lib/index.js");
+
+    var _index2 = _interopRequireDefault(_index);
+
+    var _jsxFileName = "/home/trocatudo/sales-force-feup/sales-force-feup/views/Login.js";
+
+    var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+    var _reactNative = _require(_dependencyMap[2], "react-native");
+
+    var _utils = _require(_dependencyMap[3], "../utils/utils");
+
+    var _reactRedux = _require(_dependencyMap[4], "react-redux");
+
+    var _actions = _require(_dependencyMap[5], "../redux/actions");
+
+    var _authentication = _require(_dependencyMap[6], "../network/authentication");
+
+    function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+    function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+    function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+    function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+    var _components = {
+        Login: {
+            displayName: "Login"
+        }
+    };
+
+    var _node_modulesReactTransformHmrLibIndexJs2 = (0, _index2.default)({
+        filename: "/home/trocatudo/sales-force-feup/sales-force-feup/views/Login.js",
+        components: _components,
+        locals: [module],
+        imports: [_react3.default]
+    });
+
+    function _wrapComponent(id) {
+        return function (Component) {
+            return _node_modulesReactTransformHmrLibIndexJs2(Component, id);
+        };
+    }
+
+    var Login = _wrapComponent("Login")(function (_React$Component) {
+        _inherits(Login, _React$Component);
+
+        function Login() {
+            var _ref,
+                _this2 = this;
+
+            var _temp, _this, _ret;
+
+            _classCallCheck(this, Login);
+
+            for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+                args[_key] = arguments[_key];
+            }
+
+            return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Login.__proto__ || Object.getPrototypeOf(Login)).call.apply(_ref, [this].concat(args))), _this), _this.checkLogged = function _callee() {
+                var user;
+                return regeneratorRuntime.async(function _callee$(_context) {
+                    while (1) {
+                        switch (_context.prev = _context.next) {
+                            case 0:
+                                _this.setState({
+                                    activityIndicator: true
+                                });
+
+                                _context.next = 3;
+                                return regeneratorRuntime.awrap((0, _utils.getLocally)(['salesmanCode', 'userId', 'username', 'sessionToken', 'primaveraToken']));
+
+                            case 3:
+                                user = _context.sent;
+                                if (user.sessionToken != null) _this.login(null, null, user.sessionToken, user.userId);else _this.setState({
+                                    activityIndicator: false
+                                });
+
+                            case 5:
+                            case "end":
+                                return _context.stop();
+                        }
+                    }
+                }, null, _this2);
+            }, _this.state = {
+                salesmanCode: _this.props.navigation.getParam('salesmanCode') !== null ? _this.props.navigation.getParam('salesmanCode') : '',
+                password: '',
+                error: '',
+                activityIndicator: false
+            }, _this.login = function _callee2(salesmanCode, password, sessionToken, userId) {
+                var user;
+                return regeneratorRuntime.async(function _callee2$(_context2) {
+                    while (1) {
+                        switch (_context2.prev = _context2.next) {
+                            case 0:
+                                _context2.prev = 0;
+
+                                _this.setState({
+                                    activityIndicator: true
+                                });
+
+                                if (!(sessionToken === undefined)) {
+                                    _context2.next = 8;
+                                    break;
+                                }
+
+                                _context2.next = 5;
+                                return regeneratorRuntime.awrap((0, _authentication.login)(salesmanCode, password));
+
+                            case 5:
+                                _context2.t0 = _context2.sent;
+                                _context2.next = 11;
+                                break;
+
+                            case 8:
+                                _context2.next = 10;
+                                return regeneratorRuntime.awrap((0, _authentication.loginWithToken)(userId, sessionToken));
+
+                            case 10:
+                                _context2.t0 = _context2.sent;
+
+                            case 11:
+                                user = _context2.t0;
+
+                                _this.enterApp(user.body);
+
+                                _context2.next = 18;
+                                break;
+
+                            case 15:
+                                _context2.prev = 15;
+                                _context2.t1 = _context2["catch"](0);
+
+                                _this.setState({
+                                    error: _context2.t1.error,
+                                    activityIndicator: false
+                                });
+
+                            case 18:
+                            case "end":
+                                return _context2.stop();
+                        }
+                    }
+                }, null, _this2, [[0, 15]]);
+            }, _this.saveUserToReduxAndPhone = function (user) {
+                _this.props.updateUser(user);
+
+                (0, _utils.saveLocally)([{
+                    key: 'salesmanCode',
+                    value: user.salesmanCode
+                }, {
+                    key: 'userId',
+                    value: "" + user.userId
+                }, {
+                    key: 'username',
+                    value: user.username
+                }, {
+                    key: 'sessionToken',
+                    value: user.sessionToken
+                }, {
+                    key: 'primaveraToken',
+                    value: user.primaveraToken
+                }]);
+            }, _this.enterApp = function _callee3(user) {
+                return regeneratorRuntime.async(function _callee3$(_context3) {
+                    while (1) {
+                        switch (_context3.prev = _context3.next) {
+                            case 0:
+                                _this.setState(function () {
+                                    return {
+                                        loading: false
+                                    };
+                                });
+
+                                _this.saveUserToReduxAndPhone(user);
+
+                                _this.props.navigation.navigate('DrawerNavigator');
+
+                            case 3:
+                            case "end":
+                                return _context3.stop();
+                        }
+                    }
+                }, null, _this2);
+            }, _temp), _possibleConstructorReturn(_this, _ret);
+        }
+
+        _createClass(Login, [{
+            key: "componentDidMount",
+            value: function componentDidMount() {
+                this.checkLogged();
+            }
+        }, {
+            key: "render",
+            value: function render() {
+                var _this3 = this;
+
+                var code = this.props.navigation.getParam('salesmanCode') !== null ? this.props.navigation.getParam('salesmanCode') : '';
+                var name = this.props.navigation.getParam('salesmanName') !== null ? this.props.navigation.getParam('salesmanName') : '';
+                var msg = this.props.navigation.getParam('msg') !== null ? this.props.navigation.getParam('msg') : '';
+                var activityIndicatorTextColor = this.state.activityIndicator ? _utils.ColorTheme.lightGreen : _utils.ColorTheme.black;
+                return _react3.default.createElement(
+                    _reactNative.KeyboardAvoidingView,
+                    {
+                        style: _utils.Styles.loginSignup.mainView,
+                        behavior: "padding",
+                        enabled: true,
+                        __source: {
+                            fileName: _jsxFileName,
+                            lineNumber: 77
+                        }
+                    },
+                    _react3.default.createElement(
+                        _reactNative.View,
+                        {
+                            style: _utils.Styles.loginSignup.upperView,
+                            __source: {
+                                fileName: _jsxFileName,
+                                lineNumber: 79
+                            }
+                        },
+                        _react3.default.createElement(
+                            _reactNative.Text,
+                            {
+                                style: _utils.Styles.loginSignup.logo,
+                                __source: {
+                                    fileName: _jsxFileName,
+                                    lineNumber: 81
+                                }
+                            },
+                            "Sales Force FEUP"
+                        ),
+                        _react3.default.createElement(
+                            _reactNative.Text,
+                            {
+                                style: {
+                                    color: _utils.ColorTheme.lightGreen,
+                                    fontSize: 20
+                                },
+                                __source: {
+                                    fileName: _jsxFileName,
+                                    lineNumber: 82
+                                }
+                            },
+                            "M\xF3veis FEUP"
+                        )
+                    ),
+                    _react3.default.createElement(
+                        _reactNative.Text,
+                        {
+                            style: {
+                                color: _utils.ColorTheme.lightGreen
+                            },
+                            __source: {
+                                fileName: _jsxFileName,
+                                lineNumber: 86
+                            }
+                        },
+                        msg
+                    ),
+                    _react3.default.createElement(
+                        _reactNative.Text,
+                        {
+                            style: {
+                                fontSize: 20,
+                                color: _utils.ColorTheme.lightGreen
+                            },
+                            __source: {
+                                fileName: _jsxFileName,
+                                lineNumber: 87
+                            }
+                        },
+                        name
+                    ),
+                    _react3.default.createElement(
+                        _reactNative.View,
+                        {
+                            style: [_utils.Styles.loginSignup.warningsView, {
+                                marginTop: 15
+                            }],
+                            __source: {
+                                fileName: _jsxFileName,
+                                lineNumber: 89
+                            }
+                        },
+                        _react3.default.createElement(
+                            _reactNative.Text,
+                            {
+                                style: _utils.Styles.loginSignup.warnings,
+                                __source: {
+                                    fileName: _jsxFileName,
+                                    lineNumber: 90
+                                }
+                            },
+                            this.state.error
+                        )
+                    ),
+                    _react3.default.createElement(_reactNative.ActivityIndicator, {
+                        size: "large",
+                        color: _utils.ColorTheme.strongGreen,
+                        style: {
+                            paddingBottom: 5
+                        },
+                        animating: this.state.activityIndicator,
+                        __source: {
+                            fileName: _jsxFileName,
+                            lineNumber: 93
+                        }
+                    }),
+                    _react3.default.createElement(
+                        _reactNative.Text,
+                        {
+                            style: {
+                                color: activityIndicatorTextColor,
+                                fontSize: 10
+                            },
+                            __source: {
+                                fileName: _jsxFileName,
+                                lineNumber: 94
+                            }
+                        },
+                        "Connecting to ERP"
+                    ),
+                    _react3.default.createElement(
+                        _reactNative.View,
+                        {
+                            style: _utils.Styles.loginSignup.bottomView,
+                            __source: {
+                                fileName: _jsxFileName,
+                                lineNumber: 96
+                            }
+                        },
+                        _react3.default.createElement(_reactNative.TextInput, {
+                            placeholder: "salesman code",
+                            placeholderTextColor: _utils.ColorTheme.white,
+                            style: _utils.Styles.loginSignup.textField,
+                            value: code,
+                            onChangeText: function onChangeText(text) {
+                                _this3.setState({
+                                    salesmanCode: text,
+                                    error: ''
+                                });
+                            },
+                            autoCapitalize: "none",
+                            __source: {
+                                fileName: _jsxFileName,
+                                lineNumber: 97
+                            }
+                        }),
+                        _react3.default.createElement(_reactNative.TextInput, {
+                            placeholder: "password",
+                            placeholderTextColor: _utils.ColorTheme.white,
+                            style: _utils.Styles.loginSignup.textField,
+                            onChangeText: function onChangeText(text) {
+                                _this3.setState({
+                                    password: text,
+                                    error: ''
+                                });
+                            },
+                            value: this.state.password,
+                            autoCapitalize: "none",
+                            secureTextEntry: true,
+                            __source: {
+                                fileName: _jsxFileName,
+                                lineNumber: 105
+                            }
+                        }),
+                        _react3.default.createElement(
+                            _reactNative.TouchableOpacity,
+                            {
+                                onPress: function onPress() {
+                                    _this3.login(_this3.state.salesmanCode, _this3.state.password);
+                                },
+                                style: _utils.Styles.loginSignup.buttonView,
+                                disabled: this.state.activityIndicator,
+                                __source: {
+                                    fileName: _jsxFileName,
+                                    lineNumber: 113
+                                }
+                            },
+                            _react3.default.createElement(
+                                _reactNative.Text,
+                                {
+                                    style: _utils.Styles.loginSignup.button,
+                                    __source: {
+                                        fileName: _jsxFileName,
+                                        lineNumber: 119
+                                    }
+                                },
+                                "Login"
+                            )
+                        ),
+                        _react3.default.createElement(
+                            _reactNative.Text,
+                            {
+                                style: {
+                                    marginTop: 50,
+                                    color: _utils.ColorTheme.lightGrey
+                                },
+                                __source: {
+                                    fileName: _jsxFileName,
+                                    lineNumber: 122
+                                }
+                            },
+                            "Do not have account?"
+                        ),
+                        _react3.default.createElement(
+                            _reactNative.TouchableOpacity,
+                            {
+                                onPress: function onPress() {
+                                    _this3.props.navigation.navigate('Signup');
+                                },
+                                style: _utils.Styles.loginSignup.buttonView,
+                                __source: {
+                                    fileName: _jsxFileName,
+                                    lineNumber: 123
+                                }
+                            },
+                            _react3.default.createElement(
+                                _reactNative.Text,
+                                {
+                                    style: _utils.Styles.loginSignup.button,
+                                    __source: {
+                                        fileName: _jsxFileName,
+                                        lineNumber: 127
+                                    }
+                                },
+                                "Signup"
+                            )
+                        )
+                    )
+                );
+            }
+        }]);
+
+        return Login;
+    }(_react3.default.Component));
+
+    var actionTriggers = {
+        updateUser: _actions.authActions.updateUser
+    };
+    exports.default = (0, _reactRedux.connect)(null, actionTriggers)(Login);
+});

@@ -1,0 +1,58 @@
+__d(function (global, _require, module, exports, _dependencyMap) {
+  "use strict";
+
+  var _interopRequireDefault = _require(_dependencyMap[0], "@babel/runtime/helpers/interopRequireDefault");
+
+  exports.__esModule = true;
+  exports.wrapMapToPropsConstant = wrapMapToPropsConstant;
+  exports.getDependsOnOwnProps = getDependsOnOwnProps;
+  exports.wrapMapToPropsFunc = wrapMapToPropsFunc;
+
+  var _verifyPlainObject = _interopRequireDefault(_require(_dependencyMap[1], "../utils/verifyPlainObject"));
+
+  function wrapMapToPropsConstant(getConstant) {
+    return function initConstantSelector(dispatch, options) {
+      var constant = getConstant(dispatch, options);
+
+      function constantSelector() {
+        return constant;
+      }
+
+      constantSelector.dependsOnOwnProps = false;
+      return constantSelector;
+    };
+  }
+
+  function getDependsOnOwnProps(mapToProps) {
+    return mapToProps.dependsOnOwnProps !== null && mapToProps.dependsOnOwnProps !== undefined ? Boolean(mapToProps.dependsOnOwnProps) : mapToProps.length !== 1;
+  }
+
+  function wrapMapToPropsFunc(mapToProps, methodName) {
+    return function initProxySelector(dispatch, _ref) {
+      var displayName = _ref.displayName;
+
+      var proxy = function mapToPropsProxy(stateOrDispatch, ownProps) {
+        return proxy.dependsOnOwnProps ? proxy.mapToProps(stateOrDispatch, ownProps) : proxy.mapToProps(stateOrDispatch);
+      };
+
+      proxy.dependsOnOwnProps = true;
+
+      proxy.mapToProps = function detectFactoryAndVerify(stateOrDispatch, ownProps) {
+        proxy.mapToProps = mapToProps;
+        proxy.dependsOnOwnProps = getDependsOnOwnProps(mapToProps);
+        var props = proxy(stateOrDispatch, ownProps);
+
+        if (typeof props === 'function') {
+          proxy.mapToProps = props;
+          proxy.dependsOnOwnProps = getDependsOnOwnProps(props);
+          props = proxy(stateOrDispatch, ownProps);
+        }
+
+        if (process.env.NODE_ENV !== 'production') (0, _verifyPlainObject.default)(props, displayName, methodName);
+        return props;
+      };
+
+      return proxy;
+    };
+  }
+});

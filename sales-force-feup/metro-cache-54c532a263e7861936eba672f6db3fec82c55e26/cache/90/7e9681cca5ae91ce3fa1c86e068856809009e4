@@ -1,0 +1,9 @@
+__d(function (global, _require, module, exports, _dependencyMap) {
+  var isNil = _require(_dependencyMap[0], './isNil');
+
+  var isString = _require(_dependencyMap[1], './isString');
+
+  module.exports = function isTypeName(name) {
+    return isNil(name) || isString(name);
+  };
+});

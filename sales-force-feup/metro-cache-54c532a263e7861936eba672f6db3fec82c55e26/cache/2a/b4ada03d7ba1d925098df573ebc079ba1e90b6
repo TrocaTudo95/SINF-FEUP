@@ -1,0 +1,69 @@
+__d(function (global, _require, module, exports, _dependencyMap) {
+    Object.defineProperty(exports, "__esModule", {
+        value: true
+    });
+
+    var _redux = _require(_dependencyMap[0], "redux");
+
+    var _actions = _require(_dependencyMap[1], "./actions");
+
+    var tasksReducer = function tasksReducer() {
+        var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
+        var action = arguments[1];
+
+        switch (action.type) {
+            case _actions.ACTION_TYPES.TASKS.GET_TASKS:
+                return action.payload;
+
+            default:
+                return state;
+        }
+    };
+
+    var userReducer = function userReducer() {
+        var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+        var action = arguments[1];
+
+        switch (action.type) {
+            case _actions.ACTION_TYPES.AUTH.UPDATE_USER:
+                return action.payload;
+
+            default:
+                return state;
+        }
+    };
+
+    var productsReducer = function productsReducer() {
+        var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
+        var action = arguments[1];
+
+        switch (action.type) {
+            case _actions.ACTION_TYPES.PRODUCTS.UPDATE_PRODUCTS:
+                return action.payload;
+
+            default:
+                return state;
+        }
+    };
+
+    var costumersReducer = function costumersReducer() {
+        var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
+        var action = arguments[1];
+
+        switch (action.type) {
+            case _actions.ACTION_TYPES.CUSTOMERS.UPDATE_CUSTOMERS:
+                return action.payload;
+
+            default:
+                return state;
+        }
+    };
+
+    var reducer = (0, _redux.combineReducers)({
+        tasks: tasksReducer,
+        user: userReducer,
+        products: productsReducer,
+        customers: costumersReducer
+    });
+    exports.default = reducer;
+});

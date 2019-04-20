@@ -1,0 +1,24 @@
+__d(function (global, _require, module, exports, _dependencyMap) {
+  var isType = _require(_dependencyMap[0], './isType');
+
+  var getFunctionName = _require(_dependencyMap[1], './getFunctionName');
+
+  var assert = _require(_dependencyMap[2], './assert');
+
+  var stringify = _require(_dependencyMap[3], './stringify');
+
+  module.exports = function create(type, value, path) {
+    if (isType(type)) {
+      return !type.meta.identity && typeof value === 'object' && value !== null ? new type(value, path) : type(value, path);
+    }
+
+    if (process.env.NODE_ENV !== 'production') {
+      path = path || [getFunctionName(type)];
+      assert(value instanceof type, function () {
+        return 'Invalid value ' + stringify(value) + ' supplied to ' + path.join('/');
+      });
+    }
+
+    return value;
+  };
+});

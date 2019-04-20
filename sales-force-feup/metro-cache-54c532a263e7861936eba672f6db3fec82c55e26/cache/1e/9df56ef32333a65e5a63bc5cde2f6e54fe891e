@@ -1,0 +1,252 @@
+__d(function (global, _require, module, exports, _dependencyMap) {
+  "use strict";
+
+  var _interopRequireDefault = _require(_dependencyMap[0], "@babel/runtime/helpers/interopRequireDefault");
+
+  exports.__esModule = true;
+  exports.default = connectAdvanced;
+
+  var _inheritsLoose2 = _interopRequireDefault(_require(_dependencyMap[1], "@babel/runtime/helpers/inheritsLoose"));
+
+  var _assertThisInitialized2 = _interopRequireDefault(_require(_dependencyMap[2], "@babel/runtime/helpers/assertThisInitialized"));
+
+  var _extends2 = _interopRequireDefault(_require(_dependencyMap[3], "@babel/runtime/helpers/extends"));
+
+  var _objectWithoutPropertiesLoose2 = _interopRequireDefault(_require(_dependencyMap[4], "@babel/runtime/helpers/objectWithoutPropertiesLoose"));
+
+  var _hoistNonReactStatics = _interopRequireDefault(_require(_dependencyMap[5], "hoist-non-react-statics"));
+
+  var _invariant = _interopRequireDefault(_require(_dependencyMap[6], "invariant"));
+
+  var _react = _require(_dependencyMap[7], "react");
+
+  var _reactIs = _require(_dependencyMap[8], "react-is");
+
+  var _Subscription = _interopRequireDefault(_require(_dependencyMap[9], "../utils/Subscription"));
+
+  var _PropTypes = _require(_dependencyMap[10], "../utils/PropTypes");
+
+  var hotReloadingVersion = 0;
+  var dummyState = {};
+
+  function noop() {}
+
+  function makeSelectorStateful(sourceSelector, store) {
+    var selector = {
+      run: function runComponentSelector(props) {
+        try {
+          var nextProps = sourceSelector(store.getState(), props);
+
+          if (nextProps !== selector.props || selector.error) {
+            selector.shouldComponentUpdate = true;
+            selector.props = nextProps;
+            selector.error = null;
+          }
+        } catch (error) {
+          selector.shouldComponentUpdate = true;
+          selector.error = error;
+        }
+      }
+    };
+    return selector;
+  }
+
+  function connectAdvanced(selectorFactory, _ref) {
+    var _contextTypes, _childContextTypes;
+
+    if (_ref === void 0) {
+      _ref = {};
+    }
+
+    var _ref2 = _ref,
+        _ref2$getDisplayName = _ref2.getDisplayName,
+        getDisplayName = _ref2$getDisplayName === void 0 ? function (name) {
+      return "ConnectAdvanced(" + name + ")";
+    } : _ref2$getDisplayName,
+        _ref2$methodName = _ref2.methodName,
+        methodName = _ref2$methodName === void 0 ? 'connectAdvanced' : _ref2$methodName,
+        _ref2$renderCountProp = _ref2.renderCountProp,
+        renderCountProp = _ref2$renderCountProp === void 0 ? undefined : _ref2$renderCountProp,
+        _ref2$shouldHandleSta = _ref2.shouldHandleStateChanges,
+        shouldHandleStateChanges = _ref2$shouldHandleSta === void 0 ? true : _ref2$shouldHandleSta,
+        _ref2$storeKey = _ref2.storeKey,
+        storeKey = _ref2$storeKey === void 0 ? 'store' : _ref2$storeKey,
+        _ref2$withRef = _ref2.withRef,
+        withRef = _ref2$withRef === void 0 ? false : _ref2$withRef,
+        connectOptions = (0, _objectWithoutPropertiesLoose2.default)(_ref2, ["getDisplayName", "methodName", "renderCountProp", "shouldHandleStateChanges", "storeKey", "withRef"]);
+    var subscriptionKey = storeKey + 'Subscription';
+    var version = hotReloadingVersion++;
+    var contextTypes = (_contextTypes = {}, _contextTypes[storeKey] = _PropTypes.storeShape, _contextTypes[subscriptionKey] = _PropTypes.subscriptionShape, _contextTypes);
+    var childContextTypes = (_childContextTypes = {}, _childContextTypes[subscriptionKey] = _PropTypes.subscriptionShape, _childContextTypes);
+    return function wrapWithConnect(WrappedComponent) {
+      (0, _invariant.default)((0, _reactIs.isValidElementType)(WrappedComponent), "You must pass a component to the function returned by " + (methodName + ". Instead received " + JSON.stringify(WrappedComponent)));
+      var wrappedComponentName = WrappedComponent.displayName || WrappedComponent.name || 'Component';
+      var displayName = getDisplayName(wrappedComponentName);
+      var selectorFactoryOptions = (0, _extends2.default)({}, connectOptions, {
+        getDisplayName: getDisplayName,
+        methodName: methodName,
+        renderCountProp: renderCountProp,
+        shouldHandleStateChanges: shouldHandleStateChanges,
+        storeKey: storeKey,
+        withRef: withRef,
+        displayName: displayName,
+        wrappedComponentName: wrappedComponentName,
+        WrappedComponent: WrappedComponent
+      });
+
+      var Connect = function (_Component) {
+        (0, _inheritsLoose2.default)(Connect, _Component);
+
+        function Connect(props, context) {
+          var _this;
+
+          _this = _Component.call(this, props, context) || this;
+          _this.version = version;
+          _this.state = {};
+          _this.renderCount = 0;
+          _this.store = props[storeKey] || context[storeKey];
+          _this.propsMode = Boolean(props[storeKey]);
+          _this.setWrappedInstance = _this.setWrappedInstance.bind((0, _assertThisInitialized2.default)((0, _assertThisInitialized2.default)(_this)));
+          (0, _invariant.default)(_this.store, "Could not find \"" + storeKey + "\" in either the context or props of " + ("\"" + displayName + "\". Either wrap the root component in a <Provider>, ") + ("or explicitly pass \"" + storeKey + "\" as a prop to \"" + displayName + "\"."));
+
+          _this.initSelector();
+
+          _this.initSubscription();
+
+          return _this;
+        }
+
+        var _proto = Connect.prototype;
+
+        _proto.getChildContext = function getChildContext() {
+          var _ref3;
+
+          var subscription = this.propsMode ? null : this.subscription;
+          return _ref3 = {}, _ref3[subscriptionKey] = subscription || this.context[subscriptionKey], _ref3;
+        };
+
+        _proto.componentDidMount = function componentDidMount() {
+          if (!shouldHandleStateChanges) return;
+          this.subscription.trySubscribe();
+          this.selector.run(this.props);
+          if (this.selector.shouldComponentUpdate) this.forceUpdate();
+        };
+
+        _proto.componentWillReceiveProps = function componentWillReceiveProps(nextProps) {
+          this.selector.run(nextProps);
+        };
+
+        _proto.shouldComponentUpdate = function shouldComponentUpdate() {
+          return this.selector.shouldComponentUpdate;
+        };
+
+        _proto.componentWillUnmount = function componentWillUnmount() {
+          if (this.subscription) this.subscription.tryUnsubscribe();
+          this.subscription = null;
+          this.notifyNestedSubs = noop;
+          this.store = null;
+          this.selector.run = noop;
+          this.selector.shouldComponentUpdate = false;
+        };
+
+        _proto.getWrappedInstance = function getWrappedInstance() {
+          (0, _invariant.default)(withRef, "To access the wrapped instance, you need to specify " + ("{ withRef: true } in the options argument of the " + methodName + "() call."));
+          return this.wrappedInstance;
+        };
+
+        _proto.setWrappedInstance = function setWrappedInstance(ref) {
+          this.wrappedInstance = ref;
+        };
+
+        _proto.initSelector = function initSelector() {
+          var sourceSelector = selectorFactory(this.store.dispatch, selectorFactoryOptions);
+          this.selector = makeSelectorStateful(sourceSelector, this.store);
+          this.selector.run(this.props);
+        };
+
+        _proto.initSubscription = function initSubscription() {
+          if (!shouldHandleStateChanges) return;
+          var parentSub = (this.propsMode ? this.props : this.context)[subscriptionKey];
+          this.subscription = new _Subscription.default(this.store, parentSub, this.onStateChange.bind(this));
+          this.notifyNestedSubs = this.subscription.notifyNestedSubs.bind(this.subscription);
+        };
+
+        _proto.onStateChange = function onStateChange() {
+          this.selector.run(this.props);
+
+          if (!this.selector.shouldComponentUpdate) {
+            this.notifyNestedSubs();
+          } else {
+            this.componentDidUpdate = this.notifyNestedSubsOnComponentDidUpdate;
+            this.setState(dummyState);
+          }
+        };
+
+        _proto.notifyNestedSubsOnComponentDidUpdate = function notifyNestedSubsOnComponentDidUpdate() {
+          this.componentDidUpdate = undefined;
+          this.notifyNestedSubs();
+        };
+
+        _proto.isSubscribed = function isSubscribed() {
+          return Boolean(this.subscription) && this.subscription.isSubscribed();
+        };
+
+        _proto.addExtraProps = function addExtraProps(props) {
+          if (!withRef && !renderCountProp && !(this.propsMode && this.subscription)) return props;
+          var withExtras = (0, _extends2.default)({}, props);
+          if (withRef) withExtras.ref = this.setWrappedInstance;
+          if (renderCountProp) withExtras[renderCountProp] = this.renderCount++;
+          if (this.propsMode && this.subscription) withExtras[subscriptionKey] = this.subscription;
+          return withExtras;
+        };
+
+        _proto.render = function render() {
+          var selector = this.selector;
+          selector.shouldComponentUpdate = false;
+
+          if (selector.error) {
+            throw selector.error;
+          } else {
+            return (0, _react.createElement)(WrappedComponent, this.addExtraProps(selector.props));
+          }
+        };
+
+        return Connect;
+      }(_react.Component);
+
+      Connect.WrappedComponent = WrappedComponent;
+      Connect.displayName = displayName;
+      Connect.childContextTypes = childContextTypes;
+      Connect.contextTypes = contextTypes;
+      Connect.propTypes = contextTypes;
+
+      if (process.env.NODE_ENV !== 'production') {
+        Connect.prototype.componentWillUpdate = function componentWillUpdate() {
+          var _this2 = this;
+
+          if (this.version !== version) {
+            this.version = version;
+            this.initSelector();
+            var oldListeners = [];
+
+            if (this.subscription) {
+              oldListeners = this.subscription.listeners.get();
+              this.subscription.tryUnsubscribe();
+            }
+
+            this.initSubscription();
+
+            if (shouldHandleStateChanges) {
+              this.subscription.trySubscribe();
+              oldListeners.forEach(function (listener) {
+                return _this2.subscription.listeners.subscribe(listener);
+              });
+            }
+          }
+        };
+      }
+
+      return (0, _hoistNonReactStatics.default)(Connect, WrappedComponent);
+    };
+  }
+});
